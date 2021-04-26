@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:healtcare/Screens/SignUp/components/background.dart';
+import 'package:healtcare/Screens/SignUp/components/or_divider.dart';
 import 'package:healtcare/Screens/login/login_screen.dart';
 import 'package:healtcare/components/already_have_an_account_check.dart';
 import 'package:healtcare/components/rouded_button.dart';
 import 'package:healtcare/components/rounded_input_field.dart';
 import 'package:healtcare/components/rounded_password_field.dart';
+import 'package:healtcare/constants.dart';
 
 class Body extends StatelessWidget {
   @override
@@ -65,12 +67,5 @@ class Body extends StatelessWidget {
         ],
       ),
     );
-  }
-}
-
-class OrDivider extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container();
   }
 }

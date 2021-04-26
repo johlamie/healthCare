@@ -40,7 +40,7 @@ class Body extends StatelessWidget {
             onChanged: (value) {},
           ),
           RoundedButton(
-            text: "LOGIN",
+            text: "SE CONNECTER",
             press: () {},
           ),
           SizedBox(height: size.height * 0.03),

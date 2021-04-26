@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:healtcare/Screens/SignUp/signup_screen.dart';
 import 'package:healtcare/Screens/Welcome/components/background.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:healtcare/Screens/login/login_screen.dart';
@@ -38,7 +39,16 @@ class Body extends StatelessWidget {
           ),
           RoundedButton(
             text: "S'INSCRIRE",
-            press: () {},
+            press: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return SignUpScreen();
+                  },
+                ),
+              );
+            },
             color: kPrimaryLightColor,
             textColor: Colors.black,
           ),

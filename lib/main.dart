@@ -14,11 +14,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Auth',
       theme: ThemeData(
-        primaryColor: kPrimaryColor,
-        scaffoldBackgroundColor: Colors.white
-      ),
+          primaryColor: kPrimaryColor, scaffoldBackgroundColor: Colors.white),
       home: WelcomeScreen(),
     );
   }
 }
-

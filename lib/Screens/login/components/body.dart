@@ -2,6 +2,7 @@ import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:healtcare/Screens/SignUp/signup_screen.dart';
 import 'package:healtcare/Screens/login/components/background.dart';
 import 'package:healtcare/components/already_have_an_account_check.dart';
 import 'package:healtcare/components/rouded_button.dart';
@@ -45,7 +46,16 @@ class Body extends StatelessWidget {
           ),
           SizedBox(height: size.height * 0.03),
           AlreadyHavreAnAccountCheck(
-            press: () {},
+            press: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return SignUpScreen();
+                  },
+                ),
+              );
+            },
           )
         ],
       ),

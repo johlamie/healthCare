@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:healtcare/Screens/SignUp/signup_screen.dart';
 import 'package:healtcare/Screens/Welcome/components/background.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:healtcare/Screens/displayHealthData/display_health_data.dart';
 import 'package:healtcare/Screens/login/login_screen.dart';
 import 'package:healtcare/components/rouded_button.dart';
 import 'package:healtcare/constants.dart';
@@ -51,6 +52,21 @@ class Body extends StatelessWidget {
             },
             color: kPrimaryLightColor,
             textColor: Colors.black,
+          ),
+          RoundedButton(
+            text: "Afficher les données",
+            press: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return DisplayHealthData();
+                  },
+                ),
+              );
+            },
+            color: blackColor,
+            textColor: Colors.white,
           ),
         ],
       ),

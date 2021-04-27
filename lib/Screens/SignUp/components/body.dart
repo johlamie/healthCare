@@ -19,15 +19,6 @@ class Body extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              "S'INSCRIRE",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(
-              height: size.height * 0.03,
-            ),
             SvgPicture.asset(
               "assets/icons/signup.svg",
               height: size.height * 0.35,
@@ -44,7 +35,7 @@ class Body extends StatelessWidget {
               press: () {},
             ),
             SizedBox(
-              height: size.height * 0.03,
+              height: size.height * 0.01,
             ),
             AlreadyHavreAnAccountCheck(
               login: false,

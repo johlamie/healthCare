@@ -1,3 +1,6 @@
+# Mes ficihers à ignorer
+/ignore
+
 # Miscellaneous
 *.class
 *.log

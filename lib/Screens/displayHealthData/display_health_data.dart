@@ -115,7 +115,7 @@ class _MyAppState extends State<DisplayHealthData> {
 
   Widget _contentNotFetched() {
     return Text(
-      'Appuyez sur le bouton de Téléchargement pour afficher vos données',
+      '',
     );
   }
 
@@ -143,6 +143,13 @@ class _MyAppState extends State<DisplayHealthData> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
+          leading: IconButton(
+            icon: Icon(
+              Icons.arrow_back_ios,
+              color: blackColor,
+            ),
+            onPressed: () => Navigator.pop(context, false),
+          ),
           title: const Text(
             'VOS DONNEES',
             style: TextStyle(color: blackColor),

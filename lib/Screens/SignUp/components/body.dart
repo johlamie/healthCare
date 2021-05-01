@@ -9,22 +9,38 @@ import 'package:healtcare/components/rouded_button.dart';
 import 'package:healtcare/components/rounded_input_field.dart';
 import 'package:healtcare/components/rounded_password_field.dart';
 import 'package:healtcare/constants.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    FirebaseAuth auth = FirebaseAuth.instance;
+
     return Backgroud(
       child: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            /*
             SvgPicture.asset(
               "assets/icons/signup.svg",
               height: size.height * 0.35,
+            ),*/
+            SizedBox(
+              height: size.height * 0.08,
+            ),
+            RoundedInputField(
+              hintText: "Nom",
+              onChanged: (value) {},
+            ),
+            RoundedInputField(
+              hintText: "Prénom",
+              onChanged: (value) {},
             ),
             RoundedInputField(
               hintText: "Votre e-mail",
+              icon: Icons.mail,
               onChanged: (value) {},
             ),
             RoundedPasswordField(

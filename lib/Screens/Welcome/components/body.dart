@@ -23,9 +23,9 @@ class Body extends StatelessWidget {
           ),
           SizedBox(height: size.height * 0.05),
           SvgPicture.asset(
-            "assets/icons/healthCareLogo.png",
+            "assets/icons/HealthCareLogo2 copie.svg",
             // "assets/icons/chat.svg",
-            height: size.height * 0.45,
+            height: size.height * 0.34,
           ),
           SizedBox(height: size.height * 0.05),
           RoundedButton(

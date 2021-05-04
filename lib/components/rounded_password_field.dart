@@ -12,20 +12,27 @@ class RoundedPasswordField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFiledContainer(
-      child: TextField(
+      child: TextFormField(
         obscureText: true,
         onChanged: onChanged,
         decoration: InputDecoration(
-            hintText: "Mot de passe",
-            icon: Icon(
-              Icons.lock,
-              color: kPrimaryColor,
-            ),
-            suffixIcon: Icon(
-              Icons.visibility,
-              color: kPrimaryColor,
-            ),
-            border: InputBorder.none),
+          hintText: "Mot de passe",
+          icon: Icon(
+            Icons.lock,
+            color: kPrimaryColor,
+          ),
+          suffixIcon: Icon(
+            Icons.visibility,
+            color: kPrimaryColor,
+          ),
+          border: InputBorder.none,
+        ),
+        validator: (String value) {
+          if (value.isEmpty) {
+            return "Champ Obligatoire";
+          }
+          return null;
+        },
       ),
     );
   }

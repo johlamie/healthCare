@@ -13,9 +13,10 @@ class UserModel {
 
   set setUid(value) => uid = value;
 
+  // Juste pour du debug (Afficher les données dans un format lisible)
   Map<String, dynamic> toJson() => {
-    'uid': uid,
-    'email': email,
-    'password': password,
-  }
+        'uid': uid,
+        'email': email,
+        'password': password,
+      };
 }

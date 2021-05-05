@@ -10,12 +10,14 @@ import 'package:healtcare/components/rouded_button.dart';
 import 'package:healtcare/components/rounded_input_field.dart';
 import 'package:healtcare/components/rounded_password_field.dart';
 import 'package:healtcare/components/text_field_container.dart';
+import 'package:healtcare/components/userModel.dart';
+import 'package:healtcare/components/userService.dart';
 import 'package:healtcare/constants.dart';
 
 class Body extends StatelessWidget {
-  const Body({
-    Key key,
-  }) : super(key: key);
+  UserService _userService = UserService();
+  String _email;
+  String _password;
 
   @override
   Widget build(BuildContext context) {
@@ -32,14 +34,38 @@ class Body extends StatelessWidget {
             SizedBox(height: size.height * 0.03),
             RoundedInputField(
               hintText: "Identifiant",
-              onChanged: (value) {},
+              onChanged: (value) {
+                _email = value;
+              },
             ),
             RoundedPasswordField(
-              onChanged: (value) {},
+              onChanged: (value) {
+                _password = value;
+              },
             ),
             RoundedButton(
               text: "SE CONNECTER",
               press: () {
+                _userService
+                    .auth(
+                  UserModel(
+                    email: _email,
+                    password: _password,
+                  ),
+                )
+                    .then(
+                  (value) {
+                    if (value.uid != null) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => DisplayHealthData(),
+                        ),
+                      );
+                    }
+                  },
+                );
+                /*
                 Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -47,7 +73,7 @@ class Body extends StatelessWidget {
                       return DisplayHealthData();
                     },
                   ),
-                );
+                );*/
               },
             ),
             SizedBox(height: size.height * 0.03),

@@ -9,6 +9,7 @@ import 'package:healtcare/components/already_have_an_account_check.dart';
 import 'package:healtcare/components/rouded_button.dart';
 import 'package:healtcare/components/rounded_input_field.dart';
 import 'package:healtcare/components/rounded_password_field.dart';
+import 'package:healtcare/components/userModel.dart';
 import 'package:healtcare/components/userService.dart';
 import 'package:healtcare/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -38,8 +39,9 @@ class Body extends StatelessWidget {
               height: size.height * 0.35,
             ),*/
             SizedBox(
-              height: size.height * 0.08,
+              height: size.height * 0.15,
             ),
+            /*
             RoundedInputField(
               hintText: "Nom",
               onChanged: (value) {
@@ -51,9 +53,9 @@ class Body extends StatelessWidget {
               onChanged: (value) {
                 _prenom = value;
               },
-            ),
+            ),*/
             RoundedInputField(
-              hintText: "Votre e-mail",
+              hintText: "e-mail",
               icon: Icons.mail,
               onChanged: (value) {
                 _email = value;
@@ -67,19 +69,35 @@ class Body extends StatelessWidget {
             RoundedButton(
               text: "S'INSCRIRE",
               press: () {
-                _register();
-                Navigator.push(
+                _userService
+                    .auth(
+                  UserModel(
+                    email: _email,
+                    password: _password,
+                  ),
+                )
+                    .then((value) {
+                  if (value.uid != null) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DisplayHealthData(),
+                      ),
+                    );
+                  }
+                });
+                /*Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) {
                       return DisplayHealthData();
                     },
                   ),
-                );
+                );*/
               },
             ),
             SizedBox(
-              height: size.height * 0.01,
+              height: size.height * 0.15,
             ),
             AlreadyHavreAnAccountCheck(
               login: false,
@@ -112,36 +130,9 @@ class Body extends StatelessWidget {
                 ),
               ],
             ),
-            /*
-            Container(
-              alignment: Alignment.center,
-              child: Text(_success == null
-                  ? ''
-                  : (_success
-                      ? 'Successfully registered $_email'
-                      : 'Registration failed')),
-            )*/
           ],
         ),
       ),
     );
-  }
-
-  // Connection ou a
-  Future<void> _register() async {
-    try {
-      final User user = (await _auth.createUserWithEmailAndPassword(
-        email: _email,
-        password: _password,
-      ))
-          .user;
-      if (user != null) {
-        _success = true;
-      } else {
-        _success = false;
-      }
-    } catch (e) {
-      print(e);
-    }
   }
 }

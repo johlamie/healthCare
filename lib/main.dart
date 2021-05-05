@@ -4,18 +4,18 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:healtcare/Screens/Welcome/welcome_screen.dart';
 import 'package:healtcare/Screens/displayHealthData/display_health_data.dart';
-import 'package:healtcare/components/userService.dart';
+import 'package:healtcare/components/userRegistrationService.dart';
 import 'package:healtcare/constants.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  Firebase.initializeApp();
+  // Firebase.initializeApp();
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  UserService _userService = UserService();
+  UserRegistrationService _userService = UserRegistrationService();
 
   @override
   Widget build(BuildContext context) {

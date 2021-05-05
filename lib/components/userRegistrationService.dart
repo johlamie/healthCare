@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:healtcare/components/userModel.dart';
 
-class UserService {
+class UserRegistrationService {
   FirebaseAuth _auth = FirebaseAuth.instance;
 
   Stream<UserModel> get user {
@@ -14,9 +14,11 @@ class UserService {
   Future<UserModel> auth(UserModel userModel) async {
     UserCredential userCredential;
     try {
-      userCredential = await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(
-              email: userModel.email, password: userModel.password);
+      userCredential =
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: userModel.email,
+        password: userModel.password,
+      );
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         print('The password provided is too weak.');

@@ -10,14 +10,14 @@ import 'package:healtcare/components/rouded_button.dart';
 import 'package:healtcare/components/rounded_input_field.dart';
 import 'package:healtcare/components/rounded_password_field.dart';
 import 'package:healtcare/components/userModel.dart';
-import 'package:healtcare/components/userService.dart';
+import 'package:healtcare/components/userRegistrationService.dart';
 import 'package:healtcare/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 FirebaseAuth _auth = FirebaseAuth.instance;
 
 class Body extends StatelessWidget {
-  UserService _userService = UserService();
+  UserRegistrationService _userService = UserRegistrationService();
   String _email;
   String _password;
   String _nom;

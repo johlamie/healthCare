@@ -11,11 +11,11 @@ import 'package:healtcare/components/rounded_input_field.dart';
 import 'package:healtcare/components/rounded_password_field.dart';
 import 'package:healtcare/components/text_field_container.dart';
 import 'package:healtcare/components/userModel.dart';
-import 'package:healtcare/components/userService.dart';
+import 'package:healtcare/components/userLoginService.dart';
 import 'package:healtcare/constants.dart';
 
 class Body extends StatelessWidget {
-  UserService _userService = UserService();
+  UserLoginService _userService = UserLoginService();
   String _email;
   String _password;
 

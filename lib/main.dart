@@ -8,9 +8,9 @@ import 'package:healtcare/components/userRegistrationService.dart';
 import 'package:healtcare/constants.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // Firebase.initializeApp();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
@@ -33,6 +33,7 @@ class MyApp extends StatelessWidget {
             }
             return WelcomeScreen();
           }
+          return WelcomeScreen();
           return SafeArea(
             // TODO : Page de chargement d'application
             child: Scaffold(

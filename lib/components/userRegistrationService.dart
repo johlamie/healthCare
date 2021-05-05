@@ -13,7 +13,7 @@ class UserRegistrationService {
 
   Future<UserModel> auth(UserModel userModel) async {
     UserCredential userCredential;
-    try {
+    /*try {
       userCredential =
           await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: userModel.email,
@@ -27,9 +27,9 @@ class UserRegistrationService {
       }
     } catch (e) {
       print(e);
-    }
+    }*/
 
-    /*try {
+    try {
       userCredential = await _auth.signInWithEmailAndPassword(
         email: userModel.email,
         password: userModel.password,
@@ -39,7 +39,7 @@ class UserRegistrationService {
         email: userModel.email,
         password: userModel.password,
       );
-    }*/
+    }
     userModel.setUid = userCredential.user.uid;
     return userModel;
   }

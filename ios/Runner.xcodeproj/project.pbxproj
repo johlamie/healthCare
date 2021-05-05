@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		0498178C26399FBE00AEE071 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0498178B26399FBE00AEE071 /* HealthKit.framework */; };
 		0499B60526403379009CFA27 /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AB38921828E35D43309BD95 /* Pods_Runner.framework */; };
-		0499B60626403379009CFA27 /* Pods_Runner.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7AB38921828E35D43309BD95 /* Pods_Runner.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		04E11D40264024BE00372938 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04E11D3F264024BE00372938 /* GoogleService-Info.plist */; };
 		1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */; };
 		3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */; };
@@ -18,20 +17,6 @@
 		97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FD1CF9000F007C117D /* Assets.xcassets */; };
 		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		9705A1C41CF9048500538489 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				0499B60626403379009CFA27 /* Pods_Runner.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0498178A26399FBE00AEE071 /* Runner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Runner.entitlements; sourceTree = "<group>"; };
@@ -147,7 +132,6 @@
 				97C146EA1CF9000F007C117D /* Sources */,
 				97C146EB1CF9000F007C117D /* Frameworks */,
 				97C146EC1CF9000F007C117D /* Resources */,
-				9705A1C41CF9048500538489 /* Embed Frameworks */,
 				3B06AD1E1E4923F5004D2608 /* Thin Binary */,
 				21B81D4642D9BA79177970E3 /* [CP] Embed Pods Frameworks */,
 			);

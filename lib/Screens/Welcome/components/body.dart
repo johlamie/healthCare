@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:healtcare/Screens/SignUp/signup_screen.dart';
 import 'package:healtcare/Screens/Welcome/components/background.dart';

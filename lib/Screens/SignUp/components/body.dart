@@ -17,7 +17,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 FirebaseAuth _auth = FirebaseAuth.instance;
 
 class Body extends StatelessWidget {
-  UserRegistrationService _userService = UserRegistrationService();
+  UserRegistrationService _userRegistrationService = UserRegistrationService();
   String _email;
   String _password;
   String _nom;
@@ -69,7 +69,7 @@ class Body extends StatelessWidget {
             RoundedButton(
               text: "S'INSCRIRE",
               press: () {
-                _userService
+                _userRegistrationService
                     .auth(
                   UserModel(
                     email: _email,
@@ -81,7 +81,7 @@ class Body extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => DisplayHealthData(),
+                        builder: (context) => LoginScreen(),
                       ),
                     );
                   }

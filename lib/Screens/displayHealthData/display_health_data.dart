@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:healtcare/Screens/Welcome/welcome_screen.dart';
+import 'package:healtcare/components/rouded_button.dart';
+import 'package:healtcare/components/userLoginService.dart';
 import 'package:healtcare/constants.dart';
 import 'package:health/health.dart';
 import 'dart:async';
@@ -137,6 +140,7 @@ class _MyAppState extends State<DisplayHealthData> {
     return _contentNotFetched();
   }
 
+  UserLoginService _userLoginService = UserLoginService();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -156,6 +160,21 @@ class _MyAppState extends State<DisplayHealthData> {
           ),
           backgroundColor: whiteColor,
           actions: <Widget>[
+            IconButton(
+              icon: Icon(Icons.logout),
+              onPressed: () async {
+                await _userLoginService.logout();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return WelcomeScreen();
+                    },
+                  ),
+                );
+              },
+              color: blackColor,
+            ),
             IconButton(
               icon: Icon(Icons.file_download),
               onPressed: () {

@@ -32,6 +32,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_svg: ^0.21.0+1
   health: ^3.0.5
+  custom_navigation_bar: ^0.8.1
 
 dev_dependencies:
   flutter_test:

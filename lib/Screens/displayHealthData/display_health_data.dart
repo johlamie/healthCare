@@ -113,7 +113,7 @@ class _MyAppState extends State<DisplayHealthData> {
 
   Widget _contentNotFetched() {
     return Text(
-      "En attente d'instructions...",
+      "Appuyez sur l'icone de téléchargement en haut à droite",
     );
   }
 
@@ -142,13 +142,13 @@ class _MyAppState extends State<DisplayHealthData> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          leading: IconButton(
+          /*leading: IconButton(
             icon: Icon(
               Icons.arrow_back_ios,
               color: blackColor,
             ),
             onPressed: () => Navigator.pop(context, false),
-          ),
+          ),*/
           title: const Text(
             'VOS DONNEES',
             style: TextStyle(color: blackColor),

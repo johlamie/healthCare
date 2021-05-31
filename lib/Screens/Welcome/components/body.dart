@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:healtcare/Screens/Home/homePage.dart';
 import 'package:healtcare/Screens/SignUp/signup_screen.dart';
 import 'package:healtcare/Screens/Welcome/components/background.dart';
 import 'package:flutter_svg/svg.dart';
@@ -60,7 +61,7 @@ class Body extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                   builder: (context) {
-                    return DisplayHealthData();
+                    return HomePage();
                   },
                 ),
               );

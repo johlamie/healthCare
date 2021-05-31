@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
           }
           return WelcomeScreen();
           return SafeArea(
-            // TODO : Page de chargement d'application
+            // TODO : Page de chargement d'application avec un delai de 3 secondes
             child: Scaffold(
               body: Center(
                 child: Text("CHARGEMENT DE L'APPLICATION..."),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:healtcare/Screens/Drawer/components/body.dart';
 
 import '../../constants.dart';
 
@@ -20,6 +21,7 @@ class _DrawerPageState extends State<DrawerPage> {
         ),
         backgroundColor: whiteColor,
       ),
+      body: Body(),
     );
   }
 }

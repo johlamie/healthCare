@@ -55,7 +55,7 @@ class Body extends StatelessWidget {
             textColor: Colors.black,
           ),
           RoundedButton(
-            text: "Afficher les données",
+            text: "Home",
             press: () {
               Navigator.push(
                 context,

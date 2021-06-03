@@ -61,7 +61,6 @@ class _FormScreenState extends State<FormScreen> {
                     return;
                   }
                   _formKey.currentState.save();
-                  print(nom);
                 },
               )
             ],

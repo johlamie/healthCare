@@ -69,10 +69,12 @@ class _MyAppState extends State<DisplayHealthData> {
 
       print("Steps: $steps");
 
-      setState(() {
-        _state =
-            _healthDataList.isEmpty ? AppState.NO_DATA : AppState.DATA_READY;
-      });
+      setState(
+        () {
+          _state =
+              _healthDataList.isEmpty ? AppState.NO_DATA : AppState.DATA_READY;
+        },
+      );
     } else {
       print("Autorisation non accordée");
       setState(() => _state = AppState.DATA_NOT_FETCHED);
@@ -155,7 +157,7 @@ class _MyAppState extends State<DisplayHealthData> {
           ),
           backgroundColor: whiteColor,
           actions: <Widget>[
-            IconButton(
+            /*IconButton(
               icon: Icon(Icons.logout),
               onPressed: () async {
                 await _userLoginService.logout();
@@ -169,7 +171,7 @@ class _MyAppState extends State<DisplayHealthData> {
                 );
               },
               color: blackColor,
-            ),
+            ),*/
             IconButton(
               icon: Icon(Icons.file_download),
               onPressed: () {

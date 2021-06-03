@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:healtcare/Screens/Drawer/components/pageDrawerButton.dart';
+import 'package:healtcare/Screens/FormulaireInscription/formulaire.dart';
 import 'package:healtcare/Screens/Welcome/welcome_screen.dart';
 import 'package:healtcare/components/userLoginService.dart';
 import 'profilPictures.dart';
@@ -56,7 +57,26 @@ class Body extends StatelessWidget {
                 ),
               );
             },
-          )
+          ),
+          Divider(
+            color: Colors.black54,
+            //thickness: 10, // pour l'epaissair du diviseur
+          ),
+          PageDrawerBoutton(
+            titre: "Page En cours",
+            press: //() {}
+                () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return FormScreen();
+                  },
+                ),
+              );
+            },
+            color: Colors.red[400],
+          ),
         ],
       ),
     );

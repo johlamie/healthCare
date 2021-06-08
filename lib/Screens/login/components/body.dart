@@ -1,18 +1,15 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:healtcare/Screens/Home/homePage.dart';
 import 'package:healtcare/Screens/SignUp/signup_screen.dart';
-import 'package:healtcare/Screens/displayHealthData/display_health_data.dart';
 import 'package:healtcare/Screens/login/components/background.dart';
 import 'package:healtcare/components/already_have_an_account_check.dart';
 import 'package:healtcare/components/rouded_button.dart';
 import 'package:healtcare/components/rounded_input_field.dart';
 import 'package:healtcare/components/rounded_password_field.dart';
-import 'package:healtcare/components/text_field_container.dart';
+
 import 'package:healtcare/components/userModel.dart';
 import 'package:healtcare/components/userLoginService.dart';
-import 'package:healtcare/constants.dart';
 
 class Body extends StatelessWidget {
   UserLoginService _userService = UserLoginService();
@@ -33,7 +30,7 @@ class Body extends StatelessWidget {
             ),
             SizedBox(height: size.height * 0.03),
             RoundedInputField(
-              hintText: "Identifiant",
+              hintText: "Email",
               onChanged: (value) {
                 _email = value;
               },
@@ -59,7 +56,7 @@ class Body extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => DisplayHealthData(),
+                          builder: (context) => HomePage(),
                         ),
                       );
                     }

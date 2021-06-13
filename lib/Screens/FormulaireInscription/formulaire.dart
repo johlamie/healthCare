@@ -1,5 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:healtcare/components/rouded_button.dart';
+import 'package:healtcare/components/services/database.dart';
 
 class FormScreen extends StatefulWidget {
   @override
@@ -17,6 +20,13 @@ class _FormScreenState extends State<FormScreen> {
   int bloodSugar;
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  String getUid() {
+    final FirebaseAuth auth = FirebaseAuth.instance;
+    final User user = auth.currentUser;
+    final String currentUid = user.uid;
+    return currentUid;
+  }
 
   Widget _buildEmail() {
     return TextFormField(
@@ -79,6 +89,21 @@ class _FormScreenState extends State<FormScreen> {
       },
       onSaved: (String value) {
         nom = value;
+      },
+    );
+  }
+
+  Widget _buildPrenom() {
+    return TextFormField(
+      decoration: InputDecoration(
+          labelText: 'Prenom'), // TODO : Prendre le nom en base de données
+      validator: (String value) {
+        if (value.isEmpty) {
+          return 'Prenom requis';
+        }
+      },
+      onSaved: (String value) {
+        prenom = value;
       },
     );
   }
@@ -402,7 +427,8 @@ class _FormScreenState extends State<FormScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 _buildNom(),
-                _buildBirthDate(),
+                _buildPrenom(),
+                /*_buildBirthDate(),
                 SizedBox(height: 10),
                 Row(
                   children: [
@@ -482,7 +508,7 @@ class _FormScreenState extends State<FormScreen> {
                     _buildheathDeseases(),
                   ],
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: 20),*/
                 RoundedButton(
                   color: Colors.grey[800],
                   text: "Soumettre",
@@ -492,6 +518,7 @@ class _FormScreenState extends State<FormScreen> {
                       return;
                     }
                     _formKey.currentState.save();
+                    DataBaseService(uid: getUid()).saveUser(nom, prenom);
                   },
                 )
               ],

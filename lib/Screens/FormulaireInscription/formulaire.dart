@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:healtcare/components/rouded_button.dart';
 import 'package:healtcare/components/services/database.dart';
 
+import '../../constants.dart';
+
 class FormScreen extends StatefulWidget {
   @override
   _FormScreenState createState() => _FormScreenState();
@@ -12,7 +14,10 @@ class FormScreen extends StatefulWidget {
 class _FormScreenState extends State<FormScreen> {
   String nom;
   String prenom;
+  String email;
+  String passwrd;
   String birth;
+  String phoneNumber;
   int sexe; // Demander homme ou femme mais stocker 0 = Femme, 1 Homme)
   int chestPain; // Douleur thoraxique (1 a 4)
   int arterialTbps; // Tension arterielle
@@ -43,7 +48,7 @@ class _FormScreenState extends State<FormScreen> {
         return null;
       },
       onSaved: (String value) {
-        nom = value;
+        email = value;
       },
     );
   }
@@ -58,7 +63,7 @@ class _FormScreenState extends State<FormScreen> {
         }
       },
       onSaved: (String value) {
-        nom = value;
+        passwrd = value;
       },
     );
   }
@@ -73,7 +78,7 @@ class _FormScreenState extends State<FormScreen> {
         }
       },
       onSaved: (String value) {
-        nom = value;
+        phoneNumber = value;
       },
     );
   }
@@ -117,7 +122,7 @@ class _FormScreenState extends State<FormScreen> {
         }
       },
       onSaved: (String value) {
-        nom = value;
+        birth = value;
       },
     );
   }
@@ -135,6 +140,7 @@ class _FormScreenState extends State<FormScreen> {
       onChanged: (newValue) {
         setState(() {
           valueChoose = newValue;
+          print(valueChoose);
         });
       },
       items: douleurListItems.map(
@@ -143,6 +149,7 @@ class _FormScreenState extends State<FormScreen> {
             value: valueItem,
             child: Text(valueItem),
           );
+          print(valueChoose);
         },
       ).toList(),
     );
@@ -412,6 +419,13 @@ class _FormScreenState extends State<FormScreen> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back_ios,
+            color: blackColor,
+          ),
+          onPressed: () => Navigator.pop(context, false),
+        ),
         backgroundColor: Colors.white,
         title: Text(
           "Informations",
@@ -428,7 +442,7 @@ class _FormScreenState extends State<FormScreen> {
               children: <Widget>[
                 _buildNom(),
                 _buildPrenom(),
-                /*_buildBirthDate(),
+                _buildBirthDate(),
                 SizedBox(height: 10),
                 Row(
                   children: [
@@ -508,7 +522,7 @@ class _FormScreenState extends State<FormScreen> {
                     _buildheathDeseases(),
                   ],
                 ),
-                SizedBox(height: 20),*/
+                SizedBox(height: 20),
                 RoundedButton(
                   color: Colors.grey[800],
                   text: "Soumettre",

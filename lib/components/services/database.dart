@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-
-import '../users.dart';
+import 'package:healtcare/components/usersData.dart';
 
 class DataBaseService {
   final String uid;

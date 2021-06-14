@@ -78,6 +78,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.8.1"
+  date_field:
+    dependency: "direct main"
+    description:
+      name: date_field
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.5"
   device_info:
     dependency: transitive
     description:

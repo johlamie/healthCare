@@ -2,6 +2,7 @@ import 'dart:ffi';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:healtcare/Screens/Home/homePage.dart';
 import 'package:healtcare/Screens/Welcome/welcome_screen.dart';
 import 'package:healtcare/Screens/displayHealthData/display_health_data.dart';
 import 'package:healtcare/components/userRegistrationService.dart';
@@ -29,11 +30,11 @@ class MyApp extends StatelessWidget {
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.active) {
             if (snapshot.hasData) {
-              return DisplayHealthData();
+              return HomePage();
             }
             return WelcomeScreen();
           }
-          return WelcomeScreen();
+          //return WelcomeScreen();
           return SafeArea(
             // TODO : Page de chargement d'application avec un delai de 3 secondes
             child: Scaffold(

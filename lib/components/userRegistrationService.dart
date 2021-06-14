@@ -34,11 +34,13 @@ class UserRegistrationService {
         email: userModel.email,
         password: userModel.password,
       );
+      // print("Connection");
     } catch (e) {
       userCredential = await _auth.createUserWithEmailAndPassword(
         email: userModel.email,
         password: userModel.password,
       );
+      // print("INscription");
     }
     userModel.setUid = userCredential.user.uid;
     return userModel;

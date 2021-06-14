@@ -10,7 +10,7 @@ class AppUserData {
   final String uid;
   final String nom;
   final String prenom;
-  /*final int age;
+  final int age;
   final int sex;
   final int chestPain;
   final int bloodPressure;
@@ -22,7 +22,7 @@ class AppUserData {
   final int slope; // Pente du segment ST
   final int nbMajorVesselsColored;
   final int troubleSanguin;
-  final int healthDiseases;*/
+  final int healthDiseases;
 
   /*final String age;
   final String sex;
@@ -42,8 +42,7 @@ class AppUserData {
     this.uid,
     this.nom,
     this.prenom,
-  }
-      /*this.age,
+    this.age,
     this.sex,
     this.chestPain,
     this.bloodPressure,
@@ -55,6 +54,6 @@ class AppUserData {
     this.slope,
     this.nbMajorVesselsColored,
     this.troubleSanguin,
-    this.healthDiseases,*/
-      );
+    this.healthDiseases,
+  });
 }

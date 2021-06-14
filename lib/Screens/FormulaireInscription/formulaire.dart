@@ -222,20 +222,26 @@ class _FormScreenState extends State<FormScreen> {
     );
   }
 
+  List bloodSugarItemList = [
+    "OUI",
+    "NON",
+  ];
   Widget _buildBloodSugar() {
-    return TextFormField(
-      decoration: InputDecoration(
-        labelText: 'Glycémie mg/ml',
-      ),
-      keyboardType: TextInputType.number,
-      validator: (String value) {
-        if (value.isEmpty) {
-          return 'Requis';
-        }
+    return DropdownButton(
+      value: bloodSugar,
+      onChanged: (newValue) {
+        setState(() {
+          bloodSugar = newValue;
+        });
       },
-      onSaved: (String value) {
-        bloodSugar = value;
-      },
+      items: bloodSugarItemList.map(
+        (valueItem) {
+          return DropdownMenuItem(
+            value: valueItem,
+            child: Text(valueItem),
+          );
+        },
+      ).toList(),
     );
   }
 
@@ -470,7 +476,15 @@ class _FormScreenState extends State<FormScreen> {
                 SizedBox(height: 10),
                 _buildCholesterol(),
                 SizedBox(height: 10),
-                _buildBloodSugar(),
+                Row(
+                  children: [
+                    Text("Glycémie > 120 mg/dl ?"),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    _buildBloodSugar(),
+                  ],
+                ),
                 SizedBox(height: 10),
                 Row(
                   children: [

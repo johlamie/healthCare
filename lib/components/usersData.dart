@@ -10,8 +10,9 @@ class AppUserData {
   final String uid;
   final String nom;
   final String prenom;
-  final int age;
-  final int sex;
+
+  /*final int birth;
+  final int sexe;
   final int chestPain;
   final int bloodPressure;
   final int chol;
@@ -22,35 +23,37 @@ class AppUserData {
   final int slope; // Pente du segment ST
   final int nbMajorVesselsColored;
   final int troubleSanguin;
-  final int healthDiseases;
+  final int healthDiseases;*/
 
-  /*final String age;
-  final String sex;
+  final String birth;
+  final String sexe;
   final String chestPain;
   final String bloodPressure;
   final String chol;
   final String bloodSugar; // Glycemie
   final String restingECG;
   final String maximumHeartRate;
-  final String stDepression;
+  final String exang;
+  final String oldSpeak;
   final String slope; // Pente du segment ST
   final String nbMajorVesselsColored;
   final String troubleSanguin;
-  final String healthDiseases;*/
+  final String healthDiseases;
 
   AppUserData({
     this.uid,
     this.nom,
     this.prenom,
-    this.age,
-    this.sex,
+    this.birth,
+    this.sexe,
     this.chestPain,
     this.bloodPressure,
     this.chol,
     this.bloodSugar,
     this.restingECG,
     this.maximumHeartRate,
-    this.stDepression,
+    this.exang,
+    this.oldSpeak,
     this.slope,
     this.nbMajorVesselsColored,
     this.troubleSanguin,

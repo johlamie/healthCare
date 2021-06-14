@@ -17,6 +17,20 @@ class DataBaseService {
       uid: uid,
       nom: data['nom'],
       prenom: data['prenom'],
+      birth: data['birth'],
+      sexe: data['sexe'],
+      chestPain: data['chestPain'],
+      bloodPressure: data['bloodPressure'],
+      chol: data['chol'],
+      bloodSugar: data['bloodSugar'],
+      restingECG: data['restingECG'],
+      maximumHeartRate: data['maximumHeartRate'],
+      exang: data['exang'],
+      oldSpeak: data['oldSpeak'], // Depression ST
+      slope: data['slope'],
+      nbMajorVesselsColored: data['nbMajorVesselsColored'],
+      troubleSanguin: data['troubleSanguin'],
+      healthDiseases: data['healthDiseases'],
     );
   }
 
@@ -35,11 +49,42 @@ class DataBaseService {
   }
 
   // Sauvegarder la feuille de l'utilisateur
-  Future<void> saveUser(String nom, String prenom) async {
+  Future<void> saveUser(
+    String nom,
+    String prenom,
+    String birth,
+    String sexe,
+    String chestPain,
+    String bloodPressure,
+    String chol,
+    String bloodSugar,
+    String restingECG,
+    String maximumHeartRate,
+    String exang,
+    String oldSpeak, // Depression ST
+    String slope,
+    String nbMajorVesselsColored,
+    String troubleSanguin,
+    String healthDiseases,
+  ) async {
     return await userCollection.doc(uid).set(
       {
         'nom': nom,
         'prenom': prenom,
+        'birth': birth,
+        'sexe': sexe,
+        'chestPain': chestPain,
+        'bloodPressure': bloodPressure,
+        'chol': chol,
+        'bloodSugar': bloodSugar,
+        'restingECG': restingECG,
+        'maximumHeartRate': maximumHeartRate,
+        'exang': exang,
+        'oldSpeak': oldSpeak, // Depression ST
+        'slope': slope,
+        'nbMajorVesselsColored': nbMajorVesselsColored,
+        'troubleSanguin': troubleSanguin,
+        'healthDiseases': healthDiseases,
       },
     );
   }

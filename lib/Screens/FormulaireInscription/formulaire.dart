@@ -18,11 +18,19 @@ class _FormScreenState extends State<FormScreen> {
   String passwrd;
   String birth;
   String phoneNumber;
-  int sexe; // Demander homme ou femme mais stocker 0 = Femme, 1 Homme)
-  int chestPain; // Douleur thoraxique (1 a 4)
-  int arterialTbps; // Tension arterielle
-  int chol;
-  int bloodSugar;
+  String sexe; // Demander homme ou femme mais stocker 0 = Femme, 1 Homme)
+  String chestPain; // Douleur thoraxique (1 a 4)
+  String bloodPressure; // Tension arterielle
+  String chol;
+  String bloodSugar;
+  String restingECG;
+  String maximumHeartRate;
+  String exang;
+  String oldSpeak; // Depression ST
+  String slope;
+  String nbMajorVesselsColored;
+  String troubleSanguin;
+  String healthDiseases;
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -140,7 +148,7 @@ class _FormScreenState extends State<FormScreen> {
       onChanged: (newValue) {
         setState(() {
           valueChoose = newValue;
-          print(valueChoose);
+          chestPain = valueChoose;
         });
       },
       items: douleurListItems.map(
@@ -155,17 +163,17 @@ class _FormScreenState extends State<FormScreen> {
     );
   }
 
-  String valueChooseorientationItemList;
+  // String valueChooseorientationItemList;
   List orientationItemList = [
     "Homme",
     "Femme",
   ];
   Widget _buildOrientationSexuel() {
     return DropdownButton(
-      value: valueChooseorientationItemList,
+      value: sexe,
       onChanged: (newValue) {
         setState(() {
-          valueChooseorientationItemList = newValue;
+          sexe = newValue;
         });
       },
       items: orientationItemList.map(
@@ -191,7 +199,7 @@ class _FormScreenState extends State<FormScreen> {
         }
       },
       onSaved: (String value) {
-        nom = value;
+        bloodPressure = value;
       },
     );
   }
@@ -209,7 +217,7 @@ class _FormScreenState extends State<FormScreen> {
         }
       },
       onSaved: (String value) {
-        nom = value;
+        chol = value;
       },
     );
   }
@@ -226,12 +234,11 @@ class _FormScreenState extends State<FormScreen> {
         }
       },
       onSaved: (String value) {
-        nom = value;
+        bloodSugar = value;
       },
     );
   }
 
-  String valueRestecgItemList;
   List restECGItemList = [
     "Normal",
     "STT",
@@ -239,10 +246,10 @@ class _FormScreenState extends State<FormScreen> {
   ];
   Widget _buildRestECG() {
     return DropdownButton(
-      value: valueRestecgItemList,
+      value: restingECG,
       onChanged: (newValue) {
         setState(() {
-          valueRestecgItemList = newValue;
+          restingECG = newValue;
         });
       },
       items: restECGItemList.map(
@@ -268,22 +275,22 @@ class _FormScreenState extends State<FormScreen> {
         }
       },
       onSaved: (String value) {
-        nom = value;
+        maximumHeartRate = value;
       },
     );
   }
 
-  String valueInducedAnginaExerciceItemList;
+  // String valueInducedAnginaExerciceItemList;
   List exangItemList = [
     "OUI",
     "NON",
   ];
   Widget _buildexang() {
     return DropdownButton(
-      value: valueInducedAnginaExerciceItemList,
+      value: exang,
       onChanged: (newValue) {
         setState(() {
-          valueInducedAnginaExerciceItemList = newValue;
+          exang = newValue;
         });
       },
       items: exangItemList.map(
@@ -309,12 +316,12 @@ class _FormScreenState extends State<FormScreen> {
         }
       },
       onSaved: (String value) {
-        nom = value;
+        oldSpeak = value;
       },
     );
   }
 
-  String valueslopeItemList;
+  // String valueslopeItemList;
   List slopeItemList = [
     "0",
     "1",
@@ -322,10 +329,10 @@ class _FormScreenState extends State<FormScreen> {
   ];
   Widget _buildSlope() {
     return DropdownButton(
-      value: valueslopeItemList,
+      value: slope,
       onChanged: (newValue) {
         setState(() {
-          valueslopeItemList = newValue;
+          slope = newValue;
         });
       },
       items: slopeItemList.map(
@@ -339,7 +346,7 @@ class _FormScreenState extends State<FormScreen> {
     );
   }
 
-  String valueCaVesselColored;
+  // String valueCaVesselColored;
   List vesselColoredtemList = [
     "1",
     "2",
@@ -347,10 +354,10 @@ class _FormScreenState extends State<FormScreen> {
   ];
   Widget _buildVesselColored() {
     return DropdownButton(
-      value: valueCaVesselColored,
+      value: nbMajorVesselsColored,
       onChanged: (newValue) {
         setState(() {
-          valueCaVesselColored = newValue;
+          nbMajorVesselsColored = newValue;
         });
       },
       items: vesselColoredtemList.map(
@@ -364,7 +371,7 @@ class _FormScreenState extends State<FormScreen> {
     );
   }
 
-  String valuebloodDisorder;
+  // String valuebloodDisorder;
   List bloodDisorderItemList = [
     "Normal",
     "Corrigé",
@@ -373,10 +380,10 @@ class _FormScreenState extends State<FormScreen> {
   ];
   Widget _buildBloodDisorder() {
     return DropdownButton(
-      value: valuebloodDisorder,
+      value: troubleSanguin,
       onChanged: (newValue) {
         setState(() {
-          valuebloodDisorder = newValue;
+          troubleSanguin = newValue;
         });
       },
       items: bloodDisorderItemList.map(
@@ -390,17 +397,17 @@ class _FormScreenState extends State<FormScreen> {
     );
   }
 
-  String heathDeseasesExerciceItemList;
+  // String valueheathDeseases;
   List heathDeseasesItemList = [
     "OUI",
     "NON",
   ];
   Widget _buildheathDeseases() {
     return DropdownButton(
-      value: heathDeseasesExerciceItemList,
+      value: healthDiseases,
       onChanged: (newValue) {
         setState(() {
-          heathDeseasesExerciceItemList = newValue;
+          healthDiseases = newValue;
         });
       },
       items: heathDeseasesItemList.map(
@@ -532,7 +539,24 @@ class _FormScreenState extends State<FormScreen> {
                       return;
                     }
                     _formKey.currentState.save();
-                    DataBaseService(uid: getUid()).saveUser(nom, prenom);
+                    DataBaseService(uid: getUid()).saveUser(
+                      nom,
+                      prenom,
+                      birth,
+                      sexe,
+                      chestPain,
+                      bloodPressure,
+                      chol,
+                      bloodSugar,
+                      restingECG,
+                      maximumHeartRate,
+                      exang,
+                      oldSpeak,
+                      slope,
+                      nbMajorVesselsColored,
+                      troubleSanguin,
+                      healthDiseases,
+                    );
                   },
                 )
               ],

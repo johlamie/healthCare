@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:healtcare/Screens/emergencyContact/addEmergencyContact/addContact.dart';
 import 'package:healtcare/Screens/emergencyContact/components/body.dart';
 import 'package:healtcare/constants.dart';
 
@@ -29,7 +30,16 @@ class _EmergencyContactState extends State<EmergencyContact> {
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.add_circle_outline),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return AddContact();
+                  },
+                ),
+              );
+            },
             color: blackColor,
           )
         ],

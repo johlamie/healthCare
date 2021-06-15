@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:healtcare/Screens/Drawer/drawer.dart';
 import 'package:healtcare/Screens/displayHealthData/display_health_data.dart';
-
-import '../../constants.dart';
+import 'package:healtcare/constants.dart';
 
 class HomePage extends StatefulWidget {
   @override

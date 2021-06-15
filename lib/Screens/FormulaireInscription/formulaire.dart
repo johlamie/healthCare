@@ -3,8 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:healtcare/components/rouded_button.dart';
 import 'package:healtcare/components/services/database.dart';
-
-import '../../constants.dart';
+import 'package:healtcare/constants.dart';
 
 class FormScreen extends StatefulWidget {
   @override

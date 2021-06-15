@@ -26,6 +26,13 @@ class _EmergencyContactState extends State<EmergencyContact> {
           "Contacts d'Urgence",
           style: TextStyle(color: Colors.black),
         ),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.add_circle_outline),
+            onPressed: () {},
+            color: blackColor,
+          )
+        ],
       ),
       body: Body(),
     );

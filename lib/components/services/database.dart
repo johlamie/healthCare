@@ -92,44 +92,46 @@ class DataBaseService {
 
 // Creation de la boite qui va contenir nos documents de contact d'urgence
   final CollectionReference emergencyContactCollection =
-      FirebaseFirestore.instance.collection("emergencyContact");
+      FirebaseFirestore.instance.collection("Contact");
+
+  AppUserData _contactEmergencyFromSnapshot(DocumentSnapshot snapshot) {
+    var data = snapshot.data();
+    if (data == null) throw Exception("contact not found");
+    return AppUserData(
+      uid: uid,
+      sexe: data['identite'],
+      nom: data['nom'],
+      prenom: data['prenom'],
+      birth: data['phoneNumber'],
+    );
+  }
 
   Future<void> saveUserEmergencyContact(
-      String nom,
-      String prenom,
-      String birth,
-      String sexe,
-      String chestPain,
-      String bloodPressure,
-      String chol,
-      String bloodSugar,
-      String restingECG,
-      String maximumHeartRate,
-      String exang,
-      String oldSpeak, // Depression ST
-      String slope,
-      String nbMajorVesselsColored,
-      String troubleSanguin,
-      String healthDiseases) async {
-    return await userCollection.doc(uid).set(
+      String identite, String nom, String prenom, String phoneNumber) async {
+    return await emergencyContactCollection.doc(uid).set(
       {
+        'identite': identite,
         'nom': nom,
         'prenom': prenom,
-        'birth': birth,
-        'sexe': sexe,
-        'chestPain': chestPain,
-        'bloodPressure': bloodPressure,
-        'chol': chol,
-        'bloodSugar': bloodSugar,
-        'restingECG': restingECG,
-        'maximumHeartRate': maximumHeartRate,
-        'exang': exang,
-        'oldSpeak': oldSpeak, // Depression ST
-        'slope': slope,
-        'nbMajorVesselsColored': nbMajorVesselsColored,
-        'troubleSanguin': troubleSanguin,
-        'healthDiseases': healthDiseases,
+        'phoneNumber': phoneNumber,
       },
     );
+  }
+
+  Stream<AppUserData> get contactEmergency {
+    return emergencyContactCollection
+        .doc(uid)
+        .snapshots()
+        .map(_contactEmergencyFromSnapshot);
+  }
+
+  List<AppUserData> _contactListFromSnapshot(QuerySnapshot snapshot) {
+    return snapshot.docs.map((doc) {
+      return _contactEmergencyFromSnapshot(doc);
+    }).toList();
+  }
+
+  Stream<List<AppUserData>> get contacts {
+    return emergencyContactCollection.snapshots().map(_contactListFromSnapshot);
   }
 }

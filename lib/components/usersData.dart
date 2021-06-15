@@ -39,6 +39,8 @@ class AppUserData {
   final String nbMajorVesselsColored;
   final String troubleSanguin;
   final String healthDiseases;
+  final String identite;
+  final String phoneNumber;
 
   AppUserData({
     this.uid,
@@ -58,5 +60,7 @@ class AppUserData {
     this.nbMajorVesselsColored,
     this.troubleSanguin,
     this.healthDiseases,
+    this.identite,
+    this.phoneNumber,
   });
 }

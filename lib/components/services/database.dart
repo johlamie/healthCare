@@ -50,23 +50,67 @@ class DataBaseService {
 
   // Sauvegarder la feuille de l'utilisateur
   Future<void> saveUser(
-    String nom,
-    String prenom,
-    String birth,
-    String sexe,
-    String chestPain,
-    String bloodPressure,
-    String chol,
-    String bloodSugar,
-    String restingECG,
-    String maximumHeartRate,
-    String exang,
-    String oldSpeak, // Depression ST
-    String slope,
-    String nbMajorVesselsColored,
-    String troubleSanguin,
-    String healthDiseases,
-  ) async {
+      String nom,
+      String prenom,
+      String birth,
+      String sexe,
+      String chestPain,
+      String bloodPressure,
+      String chol,
+      String bloodSugar,
+      String restingECG,
+      String maximumHeartRate,
+      String exang,
+      String oldSpeak, // Depression ST
+      String slope,
+      String nbMajorVesselsColored,
+      String troubleSanguin,
+      String healthDiseases) async {
+    return await userCollection.doc(uid).set(
+      {
+        'nom': nom,
+        'prenom': prenom,
+        'birth': birth,
+        'sexe': sexe,
+        'chestPain': chestPain,
+        'bloodPressure': bloodPressure,
+        'chol': chol,
+        'bloodSugar': bloodSugar,
+        'restingECG': restingECG,
+        'maximumHeartRate': maximumHeartRate,
+        'exang': exang,
+        'oldSpeak': oldSpeak, // Depression ST
+        'slope': slope,
+        'nbMajorVesselsColored': nbMajorVesselsColored,
+        'troubleSanguin': troubleSanguin,
+        'healthDiseases': healthDiseases,
+      },
+    );
+  }
+
+// ---------------------CONTACT D'URGENCE---------------------
+
+// Creation de la boite qui va contenir nos documents de contact d'urgence
+  final CollectionReference emergencyContactCollection =
+      FirebaseFirestore.instance.collection("emergencyContact");
+
+  Future<void> saveUserEmergencyContact(
+      String nom,
+      String prenom,
+      String birth,
+      String sexe,
+      String chestPain,
+      String bloodPressure,
+      String chol,
+      String bloodSugar,
+      String restingECG,
+      String maximumHeartRate,
+      String exang,
+      String oldSpeak, // Depression ST
+      String slope,
+      String nbMajorVesselsColored,
+      String troubleSanguin,
+      String healthDiseases) async {
     return await userCollection.doc(uid).set(
       {
         'nom': nom,

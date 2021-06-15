@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:healtcare/Screens/Account/accountPage.dart';
 import 'package:healtcare/Screens/Drawer/components/pageDrawerButton.dart';
 import 'package:healtcare/Screens/FormulaireInscription/formulaire.dart';
 import 'package:healtcare/Screens/Welcome/welcome_screen.dart';
+import 'package:healtcare/Screens/emergencyContact/emergencyContact.dart';
 import 'package:healtcare/components/userLoginService.dart';
 import 'profilPictures.dart';
 
@@ -20,9 +21,10 @@ class Body extends StatelessWidget {
             height: 5,
           ),
           Text(
-            "User Information",
+            "NOM - Prénom",
             style: TextStyle(
               fontSize: 18,
+              color: Colors.red[400],
             ),
           ),
           SizedBox(
@@ -30,7 +32,17 @@ class Body extends StatelessWidget {
           ),
           PageDrawerBoutton(
             titre: "Comptes",
-            press: () {},
+            press: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return AccountPage();
+                  },
+                ),
+              );
+            },
+            color: Colors.red[400],
           ),
           Divider(
             color: Colors.black54,
@@ -38,7 +50,35 @@ class Body extends StatelessWidget {
           ),
           PageDrawerBoutton(
             titre: "Contact d'urgence",
-            press: () {},
+            press: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return EmergencyContact();
+                  },
+                ),
+              );
+            },
+            color: Colors.red[400],
+          ),
+          Divider(
+            color: Colors.black54,
+            //thickness: 10, // pour l'epaissair du diviseur
+          ),
+          PageDrawerBoutton(
+            titre: "Soumettre une analyse",
+            press: //() {}
+                () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return FormScreen();
+                  },
+                ),
+              );
+            },
           ),
           Divider(
             color: Colors.black54,
@@ -57,25 +97,6 @@ class Body extends StatelessWidget {
                 ),
               );
             },
-          ),
-          Divider(
-            color: Colors.black54,
-            //thickness: 10, // pour l'epaissair du diviseur
-          ),
-          PageDrawerBoutton(
-            titre: "Page En cours",
-            press: //() {}
-                () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return FormScreen();
-                  },
-                ),
-              );
-            },
-            color: Colors.red[400],
           ),
         ],
       ),

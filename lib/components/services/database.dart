@@ -134,4 +134,20 @@ class DataBaseService {
   Stream<List<AppUserData>> get contacts {
     return emergencyContactCollection.snapshots().map(_contactListFromSnapshot);
   }
+
+  // Méthode pour recuperer une liste de contact
+  Future getUsersList() async {
+    List itemsList = [];
+    try {
+      await emergencyContactCollection.get().then((querySnapshot) {
+        querySnapshot.docs.forEach((element) {
+          itemsList.add(element.data);
+        });
+      });
+      return itemsList;
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
 }

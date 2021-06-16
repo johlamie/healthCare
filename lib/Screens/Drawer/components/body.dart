@@ -4,6 +4,7 @@ import 'package:healtcare/Screens/Drawer/components/pageDrawerButton.dart';
 import 'package:healtcare/Screens/FormulaireInscription/formulaire.dart';
 import 'package:healtcare/Screens/Welcome/welcome_screen.dart';
 import 'package:healtcare/Screens/emergencyContact/emergencyContact.dart';
+import 'package:healtcare/Screens/predictionScreen/predictionScreen.dart';
 import 'package:healtcare/components/userLoginService.dart';
 import 'profilPictures.dart';
 
@@ -60,7 +61,7 @@ class Body extends StatelessWidget {
                 ),
               );
             },
-            color: Colors.red[400],
+            // color: Colors.red[400],
           ),
           Divider(
             color: Colors.black54,
@@ -79,6 +80,24 @@ class Body extends StatelessWidget {
                 ),
               );
             },
+          ),
+          Divider(
+            color: Colors.black54,
+            //thickness: 10, // pour l'epaissair du diviseur
+          ),
+          PageDrawerBoutton(
+            titre: "Résultat de l'analyse (Page en cours)",
+            press: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return PredictionScreen();
+                  },
+                ),
+              );
+            },
+            color: Colors.red[400],
           ),
           Divider(
             color: Colors.black54,

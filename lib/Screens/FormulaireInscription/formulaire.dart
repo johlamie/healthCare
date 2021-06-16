@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:healtcare/Screens/predictionScreen/predictionScreen.dart';
 import 'package:healtcare/components/rouded_button.dart';
 import 'package:healtcare/components/services/database.dart';
 import 'package:healtcare/constants.dart';
@@ -570,6 +571,12 @@ class _FormScreenState extends State<FormScreen> {
                       nbMajorVesselsColored,
                       troubleSanguin,
                       healthDiseases,
+                    );
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => PredictionScreen(),
+                      ),
                     );
                   },
                 )

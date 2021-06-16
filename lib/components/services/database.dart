@@ -150,4 +150,20 @@ class DataBaseService {
       return null;
     }
   }
+
+// ---------------------Docteur---------------------
+  final CollectionReference doctorCollection =
+      FirebaseFirestore.instance.collection("Doctor");
+
+  Future<void> saveUserDoctorContact(
+      String identite, String nom, String prenom, String phoneNumber) async {
+    return await doctorCollection.doc(uid).set(
+      {
+        'identite': identite,
+        'nom': nom,
+        'prenom': prenom,
+        'phoneNumber': phoneNumber,
+      },
+    );
+  }
 }

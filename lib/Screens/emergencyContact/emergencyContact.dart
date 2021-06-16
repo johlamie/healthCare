@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:healtcare/Screens/emergencyContact/addEmergencyContact/addContact.dart';
-import 'package:healtcare/Screens/emergencyContact/components/body.dart';
+import 'package:healtcare/Screens/emergencyContact/components/contactList.dart';
 import 'package:healtcare/constants.dart';
 
 class EmergencyContact extends StatefulWidget {
@@ -44,7 +44,6 @@ class _EmergencyContactState extends State<EmergencyContact> {
           )
         ],
       ),
-      body: Body(),
     );
   }
 }

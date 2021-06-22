@@ -19,18 +19,6 @@ class DataBaseService {
       prenom: data['prenom'],
       birth: data['birth'],
       sexe: data['sexe'],
-      chestPain: data['chestPain'],
-      bloodPressure: data['bloodPressure'],
-      chol: data['chol'],
-      bloodSugar: data['bloodSugar'],
-      restingECG: data['restingECG'],
-      maximumHeartRate: data['maximumHeartRate'],
-      exang: data['exang'],
-      oldSpeak: data['oldSpeak'], // Depression ST
-      slope: data['slope'],
-      nbMajorVesselsColored: data['nbMajorVesselsColored'],
-      troubleSanguin: data['troubleSanguin'],
-      healthDiseases: data['healthDiseases'],
     );
   }
 
@@ -50,40 +38,17 @@ class DataBaseService {
 
   // Sauvegarder la feuille de l'utilisateur
   Future<void> saveUser(
-      String nom,
-      String prenom,
-      String birth,
-      String sexe,
-      String chestPain,
-      String bloodPressure,
-      String chol,
-      String bloodSugar,
-      String restingECG,
-      String maximumHeartRate,
-      String exang,
-      String oldSpeak, // Depression ST
-      String slope,
-      String nbMajorVesselsColored,
-      String troubleSanguin,
-      String healthDiseases) async {
+    String nom,
+    String prenom,
+    String birth,
+    String sexe,
+  ) async {
     return await userCollection.doc(uid).set(
       {
         'nom': nom,
         'prenom': prenom,
         'birth': birth,
         'sexe': sexe,
-        'chestPain': chestPain,
-        'bloodPressure': bloodPressure,
-        'chol': chol,
-        'bloodSugar': bloodSugar,
-        'restingECG': restingECG,
-        'maximumHeartRate': maximumHeartRate,
-        'exang': exang,
-        'oldSpeak': oldSpeak, // Depression ST
-        'slope': slope,
-        'nbMajorVesselsColored': nbMajorVesselsColored,
-        'troubleSanguin': troubleSanguin,
-        'healthDiseases': healthDiseases,
       },
     );
   }
@@ -163,6 +128,73 @@ class DataBaseService {
         'nom': nom,
         'prenom': prenom,
         'phoneNumber': phoneNumber,
+      },
+    );
+  }
+
+  //-----------------------------IA----------------------------------------
+
+  final CollectionReference iaCollection =
+      FirebaseFirestore.instance.collection("IAData");
+
+  AppUserData _dataFromSnapshot(DocumentSnapshot snapshot) {
+    var data = snapshot.data();
+    if (data == null) throw Exception("data not found");
+    return AppUserData(
+      uid: uid,
+      birth: data['birth'],
+      sexe: data['sexe'],
+      chestPain: data['chestPain'],
+      bloodPressure: data['bloodPressure'],
+      chol: data['chol'],
+      bloodSugar: data['bloodSugar'],
+      restingECG: data['restingECG'],
+      maximumHeartRate: data['maximumHeartRate'],
+      exang: data['exang'],
+      oldSpeak: data['oldSpeak'], // Depression ST
+      slope: data['slope'],
+      nbMajorVesselsColored: data['nbMajorVesselsColored'],
+      troubleSanguin: data['troubleSanguin'],
+      healthDiseases: data['healthDiseases'],
+    );
+  }
+
+  Stream<AppUserData> get iaData {
+    return userCollection.doc(uid).snapshots().map(_dataFromSnapshot);
+  }
+
+  // Sauvegarder la feuille de l'utilisateur
+  Future<void> saveData(
+      String birth,
+      String sexe,
+      String chestPain,
+      String bloodPressure,
+      String chol,
+      String bloodSugar,
+      String restingECG,
+      String maximumHeartRate,
+      String exang,
+      String oldSpeak, // Depression ST
+      String slope,
+      String nbMajorVesselsColored,
+      String troubleSanguin,
+      String healthDiseases) async {
+    return await userCollection.doc(uid).set(
+      {
+        'birth': birth,
+        'sexe': sexe,
+        'chestPain': chestPain,
+        'bloodPressure': bloodPressure,
+        'chol': chol,
+        'bloodSugar': bloodSugar,
+        'restingECG': restingECG,
+        'maximumHeartRate': maximumHeartRate,
+        'exang': exang,
+        'oldSpeak': oldSpeak, // Depression ST
+        'slope': slope,
+        'nbMajorVesselsColored': nbMajorVesselsColored,
+        'troubleSanguin': troubleSanguin,
+        'healthDiseases': healthDiseases,
       },
     );
   }

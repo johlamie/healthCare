@@ -126,7 +126,6 @@ class _BodyState extends State<Body> {
             text: "Valider",
             textColor: Colors.white,
             press: () {
-              /*
               if (!_formKey.currentState.validate()) {
                 return;
               }
@@ -134,13 +133,15 @@ class _BodyState extends State<Body> {
               DataBaseService(uid: getUid()).saveUser(
                 nom,
                 prenom,
+                birth,
+                sexe,
               );
               Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) => DrawerPage(),
                 ),
-              );*/
+              );
             },
           )
         ],

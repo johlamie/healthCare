@@ -554,9 +554,7 @@ class _FormScreenState extends State<FormScreen> {
                       return;
                     }
                     _formKey.currentState.save();
-                    DataBaseService(uid: getUid()).saveUser(
-                      nom,
-                      prenom,
+                    DataBaseService(uid: getUid()).saveData(
                       birth,
                       sexe,
                       chestPain,

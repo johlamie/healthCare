@@ -1246,7 +1246,7 @@ function getCurrentDate(){
 function addData(number){
   var id = menu[i].id;
   var value = menu[i].value;
-  db.collection("heartRate").add({
+  db.collection("heartRateSimulation").add({
       id: id,
       value: value,
   }).then(function(docRef) {

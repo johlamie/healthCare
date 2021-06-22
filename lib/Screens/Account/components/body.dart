@@ -16,6 +16,8 @@ class _BodyState extends State<Body> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   String nom;
   String prenom;
+  String sexe;
+  String birth;
 
   String getUid() {
     final FirebaseAuth auth = FirebaseAuth.instance;
@@ -26,8 +28,7 @@ class _BodyState extends State<Body> {
 
   Widget _buildNom() {
     return TextFormField(
-      decoration: InputDecoration(
-          labelText: 'Nom'), // TODO : Prendre le nom en base de données
+      decoration: InputDecoration(labelText: 'Nom'),
       validator: (String value) {
         if (value.isEmpty) {
           return 'Nom requis';
@@ -41,8 +42,7 @@ class _BodyState extends State<Body> {
 
   Widget _buildPrenom() {
     return TextFormField(
-      decoration: InputDecoration(
-          labelText: 'Prenom'), // TODO : Prendre le nom en base de données
+      decoration: InputDecoration(labelText: 'Prenom'),
       validator: (String value) {
         if (value.isEmpty) {
           return 'Prenom requis';
@@ -55,7 +55,6 @@ class _BodyState extends State<Body> {
   }
 
   // String valueChooseorientationItemList;
-  String sexe;
   List orientationItemList = [
     "Mr",
     "Mme",
@@ -114,10 +113,11 @@ class _BodyState extends State<Body> {
             ),
             mode: DateTimeFieldPickerMode.date,
             autovalidateMode: AutovalidateMode.always,
-            validator: (e) =>
-                (e?.day ?? 0) == 1 ? 'Please not the first day' : null,
+            validator: (e) => (e?.day ?? 0) == 1
+                ? "S'il vous plaît pas le premier jour"
+                : null,
             onDateSelected: (DateTime value) {
-              print(value);
+              birth = value.toString().substring(0, 10);
             },
           ),
           const SizedBox(height: 24),

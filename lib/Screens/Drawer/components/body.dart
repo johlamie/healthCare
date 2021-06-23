@@ -7,6 +7,7 @@ import 'package:healtcare/Screens/FormulaireInscription/formulaire.dart';
 import 'package:healtcare/Screens/Welcome/welcome_screen.dart';
 import 'package:healtcare/Screens/emergencyContact/emergencyContact.dart';
 import 'package:healtcare/Screens/predictionScreen/predictionScreen.dart';
+import 'package:healtcare/components/profil_widget.dart';
 import 'package:healtcare/components/userLoginService.dart';
 import 'profilPictures.dart';
 
@@ -28,10 +29,20 @@ class Body extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 15),
       child: Column(
         children: [
-          PhotoDeProfil(),
-          SizedBox(
-            height: 10,
+          ProfileWidget(
+            imagePath: "assets/images/healthCareLogo.png",
+            onClicked: () async {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return AccountPage();
+                  },
+                ),
+              );
+            },
           ),
+          SizedBox(height: 10),
           FutureBuilder<DocumentSnapshot>(
               future: contact.doc(getUid()).get(),
               builder: (BuildContext context,
@@ -63,7 +74,7 @@ class Body extends StatelessWidget {
           SizedBox(
             height: 35,
           ),
-          PageDrawerBoutton(
+          /*PageDrawerBoutton(
             titre: "Comptes",
             press: () {
               Navigator.push(
@@ -80,7 +91,7 @@ class Body extends StatelessWidget {
           Divider(
             color: Colors.black54,
             //thickness: 10, // pour l'epaissair du diviseur
-          ),
+          ),*/
           PageDrawerBoutton(
             titre: "Contact d'urgence",
             press: () {

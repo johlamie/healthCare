@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:healtcare/Screens/Account/accountPage.dart';
 import 'package:healtcare/Screens/Drawer/components/pageDrawerButton.dart';
@@ -9,6 +11,15 @@ import 'package:healtcare/components/userLoginService.dart';
 import 'profilPictures.dart';
 
 class Body extends StatelessWidget {
+  CollectionReference contact = FirebaseFirestore.instance.collection('User');
+
+  String getUid() {
+    final FirebaseAuth auth = FirebaseAuth.instance;
+    final User user = auth.currentUser;
+    final String currentUid = user.uid;
+    return currentUid;
+  }
+
   @override
   UserLoginService _userLoginService = UserLoginService();
   Widget build(BuildContext context) {
@@ -19,15 +30,36 @@ class Body extends StatelessWidget {
         children: [
           PhotoDeProfil(),
           SizedBox(
-            height: 5,
+            height: 10,
           ),
-          Text(
-            "NOM - Prénom",
-            style: TextStyle(
-              fontSize: 18,
-              color: Colors.red[400],
-            ),
-          ),
+          FutureBuilder<DocumentSnapshot>(
+              future: contact.doc(getUid()).get(),
+              builder: (BuildContext context,
+                  AsyncSnapshot<DocumentSnapshot> snapshot) {
+                if (snapshot.hasError) {
+                  return Text("\$\$\$ Error");
+                }
+
+                if (snapshot.hasData && !snapshot.data.exists) {
+                  return Text("Information utilisateur Absent");
+                }
+
+                if (snapshot.connectionState == ConnectionState.done) {
+                  Map<String, dynamic> data =
+                      snapshot.data.data() as Map<String, dynamic>;
+                  return Text(
+                    "${data['nom']}  ${data['prenom']}",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      // color: Colors.red[400],
+                    ),
+                  );
+                }
+                return Center(
+                  child: Text("LOADING..."),
+                );
+              }),
           SizedBox(
             height: 35,
           ),

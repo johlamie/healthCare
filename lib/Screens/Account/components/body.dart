@@ -91,58 +91,62 @@ class _BodyState extends State<Body> {
             onClicked: () async {},
           ),
           const SizedBox(height: 24),
-          Row(
-            children: [
-              Text("Civilité: "),
-              SizedBox(width: 20),
-              _buildOrientationSexuel(),
-            ],
-          ),
-          const SizedBox(height: 4),
-          _buildNom(),
-          const SizedBox(height: 24),
-          _buildPrenom(),
-          const SizedBox(height: 24),
-          DateTimeFormField(
-            decoration: const InputDecoration(
-              hintStyle: TextStyle(color: Colors.black45),
-              errorStyle: TextStyle(color: Colors.redAccent),
-              border: OutlineInputBorder(),
-              suffixIcon: Icon(Icons.event_note),
-              labelText: "Date d'anniversaire",
-            ),
-            mode: DateTimeFieldPickerMode.date,
-            autovalidateMode: AutovalidateMode.always,
-            validator: (e) => (e?.day ?? 0) == 1
-                ? "S'il vous plaît pas le premier jour"
-                : null,
-            onDateSelected: (DateTime value) {
-              birth = value.toString().substring(0, 10);
-            },
-          ),
-          const SizedBox(height: 24),
-          RoundedButton(
-            color: Colors.grey[800],
-            text: "Valider",
-            textColor: Colors.white,
-            press: () {
-              if (!_formKey.currentState.validate()) {
-                return;
-              }
-              _formKey.currentState.save();
-              DataBaseService(uid: getUid()).saveUser(
-                nom,
-                prenom,
-                birth,
-                sexe,
-              );
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => DrawerPage(),
+          Form(
+            key: _formKey,
+            child: Column(
+              children: <Widget>[
+                Row(
+                  children: [
+                    Text("Civilité: "),
+                    SizedBox(width: 20),
+                    _buildOrientationSexuel(),
+                  ],
                 ),
-              );
-            },
+                const SizedBox(height: 4),
+                _buildNom(),
+                const SizedBox(height: 24),
+                _buildPrenom(),
+                const SizedBox(height: 24),
+                DateTimeFormField(
+                  decoration: const InputDecoration(
+                    hintStyle: TextStyle(color: Colors.black45),
+                    errorStyle: TextStyle(color: Colors.redAccent),
+                    border: OutlineInputBorder(),
+                    suffixIcon: Icon(Icons.event_note),
+                    labelText: "Date d'anniversaire",
+                  ),
+                  mode: DateTimeFieldPickerMode.date,
+                  autovalidateMode: AutovalidateMode.always,
+                  onDateSelected: (DateTime value) {
+                    birth = value.toString().substring(0, 10);
+                  },
+                ),
+                const SizedBox(height: 24),
+                RoundedButton(
+                  color: Colors.grey[800],
+                  text: "Valider",
+                  textColor: Colors.white,
+                  press: () {
+                    if (!_formKey.currentState.validate()) {
+                      return;
+                    }
+                    _formKey.currentState.save();
+                    DataBaseService(uid: getUid()).saveUser(
+                      nom,
+                      prenom,
+                      birth,
+                      sexe,
+                    );
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DrawerPage(),
+                      ),
+                    );
+                  },
+                )
+              ],
+            ),
           )
         ],
       ),

@@ -454,18 +454,6 @@ class _FormScreenState extends State<FormScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                _buildNom(),
-                _buildPrenom(),
-                _buildBirthDate(),
-                SizedBox(height: 10),
-                Row(
-                  children: [
-                    Text("H/F: "),
-                    SizedBox(width: 20),
-                    _buildOrientationSexuel(),
-                  ],
-                ),
-                SizedBox(height: 10),
                 Row(
                   children: [
                     Text("Niveau de douleur Thoraxique : "),

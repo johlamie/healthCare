@@ -1,7 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:date_field/date_field.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:healtcare/Screens/Drawer/drawer.dart';
+import 'package:healtcare/Screens/Home/homePage.dart';
 import 'package:healtcare/components/profil_widget.dart';
 import 'package:healtcare/components/rouded_button.dart';
 import 'package:healtcare/components/services/database.dart';
@@ -18,6 +20,7 @@ class _BodyState extends State<Body> {
   String prenom;
   String sexe;
   String birth;
+  CollectionReference user = FirebaseFirestore.instance.collection('User');
 
   String getUid() {
     final FirebaseAuth auth = FirebaseAuth.instance;
@@ -26,7 +29,7 @@ class _BodyState extends State<Body> {
     return currentUid;
   }
 
-  Widget _buildNom() {
+  Widget _buildNom(String initValue) {
     return TextFormField(
       decoration: InputDecoration(labelText: 'Nom'),
       validator: (String value) {
@@ -37,10 +40,11 @@ class _BodyState extends State<Body> {
       onSaved: (String value) {
         nom = value;
       },
+      initialValue: initValue,
     );
   }
 
-  Widget _buildPrenom() {
+  Widget _buildPrenom(String initValue) {
     return TextFormField(
       decoration: InputDecoration(labelText: 'Prenom'),
       validator: (String value) {
@@ -51,6 +55,7 @@ class _BodyState extends State<Body> {
       onSaved: (String value) {
         prenom = value;
       },
+      initialValue: initValue,
     );
   }
 
@@ -59,9 +64,9 @@ class _BodyState extends State<Body> {
     "Mr",
     "Mme",
   ];
-  Widget _buildOrientationSexuel() {
+  Widget _buildOrientationSexuel(String initValue) {
     return DropdownButton(
-      value: sexe,
+      value: initValue,
       onChanged: (newValue) {
         setState(() {
           sexe = newValue;
@@ -91,63 +96,82 @@ class _BodyState extends State<Body> {
             onClicked: () async {},
           ),
           const SizedBox(height: 24),
-          Form(
-            key: _formKey,
-            child: Column(
-              children: <Widget>[
-                Row(
-                  children: [
-                    Text("Civilité: "),
-                    SizedBox(width: 20),
-                    _buildOrientationSexuel(),
-                  ],
-                ),
-                const SizedBox(height: 4),
-                _buildNom(),
-                const SizedBox(height: 24),
-                _buildPrenom(),
-                const SizedBox(height: 24),
-                DateTimeFormField(
-                  decoration: const InputDecoration(
-                    hintStyle: TextStyle(color: Colors.black45),
-                    errorStyle: TextStyle(color: Colors.redAccent),
-                    border: OutlineInputBorder(),
-                    suffixIcon: Icon(Icons.event_note),
-                    labelText: "Date d'anniversaire",
-                  ),
-                  mode: DateTimeFieldPickerMode.date,
-                  autovalidateMode: AutovalidateMode.always,
-                  onDateSelected: (DateTime value) {
-                    birth = value.toString().substring(0, 10);
-                  },
-                ),
-                const SizedBox(height: 24),
-                RoundedButton(
-                  color: Colors.grey[800],
-                  text: "Valider",
-                  textColor: Colors.white,
-                  press: () {
-                    if (!_formKey.currentState.validate()) {
-                      return;
-                    }
-                    _formKey.currentState.save();
-                    DataBaseService(uid: getUid()).saveUser(
-                      nom,
-                      prenom,
-                      birth,
-                      sexe,
-                    );
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => DrawerPage(),
-                      ),
-                    );
-                  },
-                )
-              ],
-            ),
-          )
+          FutureBuilder<DocumentSnapshot>(
+              future: user.doc(getUid()).get(),
+              builder: (BuildContext context,
+                  AsyncSnapshot<DocumentSnapshot> snapshot) {
+                if (snapshot.hasError) {
+                  print("Pop Pup ERROR");
+                }
+
+                if (snapshot.hasData && !snapshot.data.exists) {
+                  print("POP- PUP Information utilisateur Absent");
+                }
+                if (snapshot.connectionState == ConnectionState.done) {
+                  Map<String, dynamic> data =
+                      snapshot.data.data() as Map<String, dynamic>;
+                  return Form(
+                    key: _formKey,
+                    child: Column(
+                      children: <Widget>[
+                        Row(
+                          children: [
+                            Text("Civilité: "),
+                            SizedBox(width: 20),
+                            _buildOrientationSexuel(data['sexe']),
+                          ],
+                        ),
+                        const SizedBox(height: 4),
+                        _buildNom(data['nom']),
+                        const SizedBox(height: 24),
+                        _buildPrenom(data['prenom']),
+                        const SizedBox(height: 24),
+                        DateTimeFormField(
+                          decoration: const InputDecoration(
+                            hintStyle: TextStyle(color: Colors.black45),
+                            errorStyle: TextStyle(color: Colors.redAccent),
+                            border: OutlineInputBorder(),
+                            suffixIcon: Icon(Icons.event_note),
+                            labelText: "Date d'anniversaire",
+                          ),
+                          mode: DateTimeFieldPickerMode.date,
+                          autovalidateMode: AutovalidateMode.always,
+                          onDateSelected: (DateTime value) {
+                            birth = value.toString().substring(0, 10);
+                          },
+                        ),
+                        const SizedBox(height: 24),
+                        RoundedButton(
+                          color: Colors.grey[800],
+                          text: "Valider",
+                          textColor: Colors.white,
+                          press: () {
+                            if (!_formKey.currentState.validate()) {
+                              return;
+                            }
+                            _formKey.currentState.save();
+                            DataBaseService(uid: getUid()).saveUser(
+                              nom,
+                              prenom,
+                              birth,
+                              sexe,
+                            );
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => HomePage(),
+                              ),
+                            );
+                          },
+                        )
+                      ],
+                    ),
+                  );
+                }
+                return Center(
+                  child: Text("CHARGEMENT..."),
+                );
+              }),
         ],
       ),
     );

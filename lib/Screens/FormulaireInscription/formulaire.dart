@@ -442,7 +442,7 @@ class _FormScreenState extends State<FormScreen> {
         ),
         backgroundColor: Colors.white,
         title: Text(
-          "Informations",
+          "Formulaire complémentaire",
           style: TextStyle(color: Colors.black),
         ),
       ),
@@ -454,39 +454,6 @@ class _FormScreenState extends State<FormScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Row(
-                  children: [
-                    Text("Niveau de douleur Thoraxique : "),
-                    _buildDouleurThoraxique(),
-                  ],
-                ),
-                SizedBox(height: 10),
-                _buildTensionArterielle(),
-                SizedBox(height: 10),
-                _buildCholesterol(),
-                SizedBox(height: 10),
-                Row(
-                  children: [
-                    Text("Glycémie > 120 mg/dl ?"),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    _buildBloodSugar(),
-                  ],
-                ),
-                SizedBox(height: 10),
-                Row(
-                  children: [
-                    Text("Anomalie sur l'ECG : "),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    _buildRestECG(),
-                  ],
-                ),
-                SizedBox(height: 10),
-                _buildMaxHearthFrequency(),
-                SizedBox(height: 10),
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
@@ -497,19 +464,10 @@ class _FormScreenState extends State<FormScreen> {
                   ),
                 ),
                 SizedBox(height: 10),
-                _buildOldSpeak(),
-                SizedBox(height: 10),
                 Row(
                   children: [
-                    Text("Pente du segment ST : "),
-                    _buildSlope(),
-                  ],
-                ),
-                SizedBox(height: 10),
-                Row(
-                  children: [
-                    Text("Vaisseaux colorés après Fluoroscopie : "),
-                    _buildVesselColored(),
+                    Text("Niveau de douleur Thoraxique : "),
+                    _buildDouleurThoraxique(),
                   ],
                 ),
                 SizedBox(height: 10),

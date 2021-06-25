@@ -3,8 +3,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:healtcare/Screens/emergencyContact/addEmergencyContact/addContact.dart';
 import 'package:healtcare/components/services/database.dart';
+import 'package:healtcare/components/userList.dart';
 import 'package:healtcare/components/usersData.dart';
 import 'package:healtcare/constants.dart';
+import 'package:provider/provider.dart';
 
 class EmergencyContact extends StatefulWidget {
   @override
@@ -21,42 +23,55 @@ class _EmergencyContactState extends State<EmergencyContact> {
     return currentUid;
   }
 
+  var stream = FirebaseFirestore.instance.collection('Contact').snapshots();
+
   @override
   Widget build(BuildContext context) {
     CollectionReference contact =
         FirebaseFirestore.instance.collection('Contact');
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back_ios,
-            color: blackColor,
+    // final user = Provider.of<AppUser>(context);
+    final database = DataBaseService(uid: getUid());
+
+    return StreamProvider<List<AppUserData>>.value(
+      initialData: [],
+      value: database.contacts,
+      child: Scaffold(
+        appBar: AppBar(
+          leading: IconButton(
+            icon: Icon(
+              Icons.arrow_back_ios,
+              color: blackColor,
+            ),
+            onPressed: () => Navigator.pop(context, false),
           ),
-          onPressed: () => Navigator.pop(context, false),
+          backgroundColor: Colors.white,
+          title: Text(
+            "Contacts d'urgence",
+            style: TextStyle(color: Colors.black),
+          ),
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(Icons.add_circle_outline),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return AddContact();
+                    },
+                  ),
+                );
+              },
+              color: blackColor,
+            )
+          ],
         ),
-        backgroundColor: Colors.white,
-        title: Text(
-          "Contacts d'urgence",
-          style: TextStyle(color: Colors.black),
-        ),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.add_circle_outline),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return AddContact();
-                  },
-                ),
-              );
-            },
-            color: blackColor,
-          )
-        ],
+        body: UserList(),
       ),
-      body: FutureBuilder<DocumentSnapshot>(
+    );
+
+    /*
+      FutureBuilder<DocumentSnapshot>(
         future: contact.doc(getUid()).get(),
         builder:
             (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
@@ -101,7 +116,6 @@ class _EmergencyContactState extends State<EmergencyContact> {
             child: Text("LOADING..."),
           );
         },
-      ),
-    );
+      ),*/
   }
 }

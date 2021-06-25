@@ -155,21 +155,6 @@ class _AddContactState extends State<AddContact> {
                       return;
                     }
                     _formKey.currentState.save();
-                    if (identite == "Medecin") {
-                      DataBaseService(uid: getUid()).saveUserDoctorContact(
-                        identite,
-                        nom,
-                        prenom,
-                        phoneNumber,
-                      );
-                    } else {
-                      DataBaseService(uid: getUid()).saveUserEmergencyContact(
-                        identite,
-                        nom,
-                        prenom,
-                        phoneNumber,
-                      );
-                    }
                     DataBaseService(uid: getUid()).saveUserEmergencyContact(
                       identite,
                       nom,

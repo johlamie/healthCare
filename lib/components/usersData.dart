@@ -10,21 +10,6 @@ class AppUserData {
   final String uid;
   final String nom;
   final String prenom;
-
-  /*final int birth;
-  final int sexe;
-  final int chestPain;
-  final int bloodPressure;
-  final int chol;
-  final int bloodSugar; // Glycemie
-  final int restingECG;
-  final int maximumHeartRate;
-  final double stDepression;
-  final int slope; // Pente du segment ST
-  final int nbMajorVesselsColored;
-  final int troubleSanguin;
-  final int healthDiseases;*/
-
   final String birth;
   final String sexe;
   final String chestPain;

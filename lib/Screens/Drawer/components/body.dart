@@ -12,7 +12,7 @@ import 'package:healtcare/components/userLoginService.dart';
 import 'profilPictures.dart';
 
 class Body extends StatelessWidget {
-  CollectionReference user = FirebaseFirestore.instance.collection('User');
+  CollectionReference contact = FirebaseFirestore.instance.collection('User');
 
   String getUid() {
     final FirebaseAuth auth = FirebaseAuth.instance;
@@ -44,7 +44,7 @@ class Body extends StatelessWidget {
           ),
           SizedBox(height: 10),
           FutureBuilder<DocumentSnapshot>(
-              future: user.doc(getUid()).get(),
+              future: contact.doc(getUid()).get(),
               builder: (BuildContext context,
                   AsyncSnapshot<DocumentSnapshot> snapshot) {
                 if (snapshot.hasError) {

@@ -73,14 +73,20 @@ class DataBaseService {
 
   Future<void> saveUserEmergencyContact(
       String identite, String nom, String prenom, String phoneNumber) async {
-    return await emergencyContactCollection.doc(uid).set(
+    return await emergencyContactCollection.doc(uid).collection("Contact").add({
+      'identite': identite,
+      'nom': nom,
+      'prenom': prenom,
+      'phoneNumber': phoneNumber,
+    });
+    /*set(
       {
         'identite': identite,
         'nom': nom,
         'prenom': prenom,
         'phoneNumber': phoneNumber,
       },
-    );
+    );*/
   }
 
   Stream<AppUserData> get contactEmergency {

@@ -21,12 +21,27 @@ class _UserListState extends State<UserList> {
   }
 }
 
+final FirebaseAuth auth = FirebaseAuth.instance;
+final User currentUser = auth.currentUser;
+final String currentUid = currentUser.uid;
+
+String getUid() {
+  final FirebaseAuth auth = FirebaseAuth.instance;
+  final User user = auth.currentUser;
+  final String currentUid = user.uid;
+  return currentUid;
+}
+
 class UserTile extends StatelessWidget {
   final AppUserData user;
   UserTile(this.user);
 
-  CollectionReference contact =
-      FirebaseFirestore.instance.collection('Contact');
+  String uid = getUid();
+
+  CollectionReference contact = FirebaseFirestore.instance
+      .collection('Contact')
+      .doc(getUid())
+      .collection('Contact');
 
   @override
   Widget build(BuildContext context) {

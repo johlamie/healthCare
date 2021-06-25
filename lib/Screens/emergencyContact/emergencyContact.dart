@@ -23,12 +23,10 @@ class _EmergencyContactState extends State<EmergencyContact> {
     return currentUid;
   }
 
-  var stream = FirebaseFirestore.instance.collection('Contact').snapshots();
+  // var stream = FirebaseFirestore.instance.collection('Doctor').snapshots();
 
   @override
   Widget build(BuildContext context) {
-    CollectionReference contact =
-        FirebaseFirestore.instance.collection('Contact');
     // final user = Provider.of<AppUser>(context);
     final database = DataBaseService(uid: getUid());
 

@@ -55,9 +55,14 @@ class DataBaseService {
 
 // ---------------------CONTACT D'URGENCE---------------------
 
+  String getUid() {
+    return uid;
+  }
+
 // Creation de la boite qui va contenir nos documents de contact d'urgence
   final CollectionReference emergencyContactCollection =
       FirebaseFirestore.instance.collection("Contact");
+  // .doc(uid).collection("Contact");
 
   AppUserData _contactEmergencyFromSnapshot(DocumentSnapshot snapshot) {
     var data = snapshot.data();
@@ -103,7 +108,12 @@ class DataBaseService {
   }
 
   Stream<List<AppUserData>> get contacts {
-    return emergencyContactCollection.snapshots().map(_contactListFromSnapshot);
+    return FirebaseFirestore.instance
+        .collection("Contact")
+        .doc(uid)
+        .collection("Contact")
+        .snapshots()
+        .map(_contactListFromSnapshot);
   }
 
   // Méthode pour recuperer une liste de contact

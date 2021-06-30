@@ -49,3 +49,11 @@ class AppUserData {
     this.phoneNumber,
   });
 }
+
+class AppUserRateData {
+  final String uid;
+  final String heartRate;
+  final String date;
+
+  AppUserRateData({this.heartRate, this.date, this.uid});
+}

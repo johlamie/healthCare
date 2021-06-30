@@ -36,6 +36,7 @@ dependencies:
   cloud_firestore: ^0.16.0+1
   date_field: ^1.0.5
   provider: ^5.0.0
+  geolocator: ^6.2.1
 
 dev_dependencies:
   flutter_test:

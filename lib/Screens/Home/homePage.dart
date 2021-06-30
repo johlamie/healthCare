@@ -24,13 +24,10 @@ class _HomePageState extends State<HomePage> {
   getCurrentLocalisation() async {
     var position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
-
     var lastPosition = await Geolocator.getLastKnownPosition();
-    // print(lastPosition);
-
     setState(() {
-      print('${position.latitude}');
-      print('${position.longitude}');
+      latitude = ('${lastPosition.latitude}');
+      longitude = ('${lastPosition.longitude}');
     });
   }
 

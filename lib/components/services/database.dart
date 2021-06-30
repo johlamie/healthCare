@@ -53,6 +53,54 @@ class DataBaseService {
     );
   }
 
+// ---------------------GEOLOCALISATION---------------------
+
+  final CollectionReference gpsCollection =
+      FirebaseFirestore.instance.collection("userLocalisation");
+
+  AppUserLocalisation _localisationFromSnapshot(DocumentSnapshot snapshot) {
+    var data = snapshot.data();
+    if (data == null) throw Exception("user not found");
+    return AppUserLocalisation(
+      uid: uid,
+      latitude: data['latitude'],
+      longitude: data['longitude'],
+      date: data['date'],
+    );
+  }
+
+  Stream<AppUserLocalisation> get localisation {
+    return userCollection.doc(uid).snapshots().map(_localisationFromSnapshot);
+  }
+
+  List<AppUserLocalisation> _localisationListFromSnapshot(
+      QuerySnapshot snapshot) {
+    return snapshot.docs.map((doc) {
+      return _localisationFromSnapshot(doc);
+    }).toList();
+  }
+
+  Stream<List<AppUserLocalisation>> get localisations {
+    return userCollection.snapshots().map(_localisationListFromSnapshot);
+  }
+
+  // Sauvegarder la feuille de l'utilisateur
+  Future<void> saveUserLocalisation(
+    String nom,
+    String prenom,
+    String birth,
+    String sexe,
+  ) async {
+    return await userCollection.doc(uid).set(
+      {
+        'nom': nom,
+        'prenom': prenom,
+        'birth': birth,
+        'sexe': sexe,
+      },
+    );
+  }
+
 // ---------------------CONTACT D'URGENCE---------------------
 
   String getUid() {

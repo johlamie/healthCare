@@ -55,5 +55,14 @@ class AppUserRateData {
   final String heartRate;
   final String date;
 
-  AppUserRateData({this.heartRate, this.date, this.uid});
+  AppUserRateData({this.uid, this.heartRate, this.date});
+}
+
+class AppUserLocalisation {
+  final String uid;
+  final String latitude;
+  final String longitude;
+  final String date;
+
+  AppUserLocalisation({this.uid, this.latitude, this.longitude, this.date});
 }

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:healtcare/Screens/Drawer/drawer.dart';
@@ -59,27 +60,44 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: PageView(
-        controller: _pageController,
-        children: _screens,
-        onPageChanged: _onPageChanged,
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: "Acceuil",
+    Stream localisationStream = FirebaseFirestore.instance
+        .collection('heartRateSimulation')
+        .snapshots();
+
+    return StreamBuilder<QuerySnapshot>(
+      stream: localisationStream,
+      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        if (snapshot.hasError) {
+          return Text("ERROR");
+        }
+        /*
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Text("Loading");
+        }*/
+
+        return Scaffold(
+          body: PageView(
+            controller: _pageController,
+            children: _screens,
+            onPageChanged: _onPageChanged,
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.list),
-            label: "",
+          bottomNavigationBar: BottomNavigationBar(
+            items: const <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                icon: Icon(Icons.home),
+                label: "Acceuil",
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.list),
+                label: "",
+              ),
+            ],
+            currentIndex: _selectedIndex,
+            selectedItemColor: kPrimaryColor,
+            onTap: _onItemTapped,
           ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: kPrimaryColor,
-        onTap: _onItemTapped,
-      ),
+        );
+      },
     );
   }
 }

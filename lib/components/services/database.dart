@@ -55,7 +55,7 @@ class DataBaseService {
 
 // ---------------------GEOLOCALISATION---------------------
 
-  final CollectionReference gpsCollection =
+  final CollectionReference localisationCollection =
       FirebaseFirestore.instance.collection("userLocalisation");
 
   AppUserLocalisation _localisationFromSnapshot(DocumentSnapshot snapshot) {
@@ -70,7 +70,10 @@ class DataBaseService {
   }
 
   Stream<AppUserLocalisation> get localisation {
-    return userCollection.doc(uid).snapshots().map(_localisationFromSnapshot);
+    return localisationCollection
+        .doc(uid)
+        .snapshots()
+        .map(_localisationFromSnapshot);
   }
 
   List<AppUserLocalisation> _localisationListFromSnapshot(
@@ -81,22 +84,22 @@ class DataBaseService {
   }
 
   Stream<List<AppUserLocalisation>> get localisations {
-    return userCollection.snapshots().map(_localisationListFromSnapshot);
+    return localisationCollection
+        .snapshots()
+        .map(_localisationListFromSnapshot);
   }
 
   // Sauvegarder la feuille de l'utilisateur
   Future<void> saveUserLocalisation(
-    String nom,
-    String prenom,
-    String birth,
-    String sexe,
+    String latitude,
+    String longitude,
+    String date,
   ) async {
-    return await userCollection.doc(uid).set(
+    return await localisationCollection.doc(uid).set(
       {
-        'nom': nom,
-        'prenom': prenom,
-        'birth': birth,
-        'sexe': sexe,
+        'latitude': latitude,
+        'longitude': longitude,
+        'date': date,
       },
     );
   }

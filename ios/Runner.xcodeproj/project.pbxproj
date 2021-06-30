@@ -19,7 +19,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		04234743268C9E240007DEC4 /* LocationTest.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = LocationTest.gpx; path = ../LocationTest.gpx; sourceTree = "<group>"; };
 		04234749268CA4680007DEC4 /* LocationESGI2.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = LocationESGI2.gpx; sourceTree = "<group>"; };
 		0498178A26399FBE00AEE071 /* Runner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Runner.entitlements; sourceTree = "<group>"; };
 		0498178B26399FBE00AEE071 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
@@ -90,7 +89,6 @@
 			isa = PBXGroup;
 			children = (
 				04234749268CA4680007DEC4 /* LocationESGI2.gpx */,
-				04234743268C9E240007DEC4 /* LocationTest.gpx */,
 				9740EEB11CF90186004384FC /* Flutter */,
 				97C146F01CF9000F007C117D /* Runner */,
 				97C146EF1CF9000F007C117D /* Products */,

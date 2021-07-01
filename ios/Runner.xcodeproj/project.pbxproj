@@ -20,6 +20,7 @@
 
 /* Begin PBXFileReference section */
 		04234749268CA4680007DEC4 /* LocationESGI2.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = LocationESGI2.gpx; sourceTree = "<group>"; };
+		0423474A268DF9A30007DEC4 /* LocationESGI.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = LocationESGI.gpx; sourceTree = "<group>"; };
 		0498178A26399FBE00AEE071 /* Runner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Runner.entitlements; sourceTree = "<group>"; };
 		0498178B26399FBE00AEE071 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		04E11D3F264024BE00372938 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -89,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				04234749268CA4680007DEC4 /* LocationESGI2.gpx */,
+				0423474A268DF9A30007DEC4 /* LocationESGI.gpx */,
 				9740EEB11CF90186004384FC /* Flutter */,
 				97C146F01CF9000F007C117D /* Runner */,
 				97C146EF1CF9000F007C117D /* Products */,

@@ -60,16 +60,25 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    Stream localisationStream = FirebaseFirestore.instance
+    Stream heartStream = FirebaseFirestore.instance
         .collection('heartRateSimulation')
         .snapshots();
 
     return StreamBuilder<QuerySnapshot>(
-      stream: localisationStream,
+      stream: heartStream,
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.hasError) {
           return Text("ERROR");
         }
+        snapshot.data.docs.forEach(
+          (element) {
+            int heartRate = element['value'];
+            if (heartRate <= 20) {
+              // TODO
+              print("LANCER L'alerte pour le plus proche voison");
+            }
+          },
+        );
         /*
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Text("Loading");

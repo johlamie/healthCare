@@ -1269,11 +1269,11 @@ function getCurrentDate(){
 function addData(number){
   var id = menu[i].id;
   var value = menu[i].value;
-  db.collection("heartRateSimulation").add({
+  db.collection("heartRateSimulation").doc('simulation').set({
       id: id,
       value: value,
   }).then(function(docRef) {
-      console.log("Document written with ID: ", docRef.id);
+      console.log("Document written");
   })
   .catch(function(error) {
       console.error("Error adding document: ", error);

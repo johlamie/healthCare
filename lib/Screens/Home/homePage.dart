@@ -29,7 +29,7 @@ class _HomePageState extends State<HomePage> {
   getCurrentLocalisation() async {
     var position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
-    var lastPosition = await Geolocator.getLastKnownPosition();
+    // var lastPosition = await Geolocator.getLastKnownPosition();
     setState(() {
       latitude = ('${position.latitude}');
       longitude = ('${position.longitude}');
@@ -58,6 +58,31 @@ class _HomePageState extends State<HomePage> {
     _pageController.jumpToPage(selectedIndex);
   }
 
+  // TODO : Voir pourquoi ça donne pas quand on appelle depuis une méthode
+  /*lauchAlert() {
+    StreamBuilder<QuerySnapshot>(
+      stream: FirebaseFirestore.instance
+          .collection('heartRateSimulation')
+          .snapshots(),
+      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        if (snapshot.hasError) {
+          return Text("ERROR");
+        }
+        snapshot.data.docs.forEach(
+          (element) {
+            value = element['value'];
+            if (value <= 20) {
+              print("LANCER L'alerte pour le plus proche voison");
+            } else {
+              print("OKOK");
+            }
+          },
+        );
+        return Text("");
+      },
+    );
+  }*/
+
   @override
   Widget build(BuildContext context) {
     Stream heartStream = FirebaseFirestore.instance
@@ -73,9 +98,16 @@ class _HomePageState extends State<HomePage> {
         snapshot.data.docs.forEach(
           (element) {
             int heartRate = element['value'];
+            DataBaseService(uid: getUid()).saveUserHeartRate(
+              DateTime.now().toString(),
+              heartRate,
+            );
+
             if (heartRate <= 20) {
-              // TODO
+              // TODO :
               print("LANCER L'alerte pour le plus proche voison");
+            } else {
+              print(heartRate);
             }
           },
         );

@@ -6,7 +6,7 @@ class DataBaseService {
 
   DataBaseService({this.uid});
 
-  // Creation de la boite qui va contenir nos documents Utilisateur
+// ---------------------USER---------------------
   final CollectionReference userCollection =
       FirebaseFirestore.instance.collection("User");
 
@@ -100,6 +100,21 @@ class DataBaseService {
         'latitude': latitude,
         'longitude': longitude,
         'date': date,
+      },
+    );
+  }
+
+// ---------------------HEART RATE---------------------
+  final CollectionReference heartRateCollection =
+      FirebaseFirestore.instance.collection("heartRate");
+
+  Future<void> saveUserHeartRate(
+    String date,
+    int heartRate,
+  ) async {
+    return await heartRateCollection.doc(uid).collection('data').doc(date).set(
+      {
+        'heartRate': heartRate,
       },
     );
   }

@@ -52,7 +52,7 @@ class AppUserData {
 
 class AppUserRateData {
   final String uid;
-  final String heartRate;
+  final int heartRate;
   final String date;
 
   AppUserRateData({this.uid, this.heartRate, this.date});

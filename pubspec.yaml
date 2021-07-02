@@ -38,6 +38,7 @@ dependencies:
   provider: ^5.0.0
   geolocator: ^6.2.1
   firebase_ml_custom: ^0.2.0+1
+  flutter_local_notifications: ^4.0.1+2
 
 dev_dependencies:
   flutter_test:

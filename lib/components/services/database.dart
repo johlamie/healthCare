@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:healtcare/components/usersData.dart';
 
 class DataBaseService {
@@ -117,6 +118,22 @@ class DataBaseService {
     return await heartRateCollection.doc(uid).collection('data').doc(date).set(
       {
         'heartRate': heartRate,
+      },
+    );
+  }
+
+// ---------------------HEART ATTACK SIGNAL---------------------
+  final CollectionReference heartAttackCollection =
+      FirebaseFirestore.instance.collection("heartAttackSignal");
+
+  Future<void> saveAttackValue(
+    String iamneighbor,
+    String uid,
+  ) async {
+    return await heartAttackCollection.doc(uid).set(
+      {
+        'iamneighbor': iamneighbor,
+        'uid': uid,
       },
     );
   }

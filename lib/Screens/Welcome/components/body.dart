@@ -54,7 +54,7 @@ class Body extends StatelessWidget {
             color: kPrimaryLightColor,
             textColor: Colors.black,
           ),
-          RoundedButton(
+          /*RoundedButton(
             text: "Home",
             press: () {
               Navigator.push(
@@ -68,7 +68,7 @@ class Body extends StatelessWidget {
             },
             color: blackColor,
             textColor: Colors.white,
-          ),
+          ),*/
         ],
       ),
     ));

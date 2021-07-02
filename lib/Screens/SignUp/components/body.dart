@@ -9,6 +9,7 @@ import 'package:healtcare/components/already_have_an_account_check.dart';
 import 'package:healtcare/components/rouded_button.dart';
 import 'package:healtcare/components/rounded_input_field.dart';
 import 'package:healtcare/components/rounded_password_field.dart';
+import 'package:healtcare/components/services/database.dart';
 import 'package:healtcare/components/userModel.dart';
 import 'package:healtcare/components/userRegistrationService.dart';
 import 'package:healtcare/constants.dart';
@@ -78,6 +79,11 @@ class Body extends StatelessWidget {
                 )
                     .then((value) {
                   if (value.uid != null) {
+                    int iamneighbor = 0;
+                    DataBaseService(uid: value.uid).saveAttackValue(
+                      iamneighbor,
+                      "",
+                    );
                     Navigator.push(
                       context,
                       MaterialPageRoute(

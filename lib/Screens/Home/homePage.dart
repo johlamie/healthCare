@@ -7,6 +7,7 @@ import 'package:healtcare/components/services/database.dart';
 import 'package:healtcare/components/usersData.dart';
 import 'package:healtcare/constants.dart';
 import 'package:geolocator/geolocator.dart';
+import 'dart:math';
 
 class HomePage extends StatefulWidget {
   @override
@@ -17,8 +18,9 @@ class _HomePageState extends State<HomePage> {
   PageController _pageController = PageController();
   List<Widget> _screens = [DisplayHealthData(), DrawerPage()];
   int _selectedIndex = 0;
-  String latitude;
-  String longitude;
+  double rayonTerre = 6371;
+  double latitude;
+  double longitude;
 
   String getUid() {
     final FirebaseAuth auth = FirebaseAuth.instance;
@@ -30,15 +32,17 @@ class _HomePageState extends State<HomePage> {
   getCurrentLocalisation() async {
     var position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
-    // var lastPosition = await Geolocator.getLastKnownPosition();
+    var lastPosition = await Geolocator.getLastKnownPosition();
     setState(() {
-      latitude = ('${position.latitude}');
-      longitude = ('${position.longitude}');
+      // latitude = ('${position.latitude}');
+      // longitude = ('${position.longitude}');
+      latitude = position.latitude;
+      longitude = position.longitude;
       String date = DateTime.now().toString();
       DataBaseService(uid: getUid()).saveUserLocalisation(
         getUid(),
-        latitude,
-        longitude,
+        latitude.toString(),
+        longitude.toString(),
         date,
       );
     });
@@ -61,15 +65,28 @@ class _HomePageState extends State<HomePage> {
   }
 
   lauchAlert() {
-    FirebaseFirestore.instance
-        .collection("userLocalisation")
-        .get()
-        .then((querySnapshot) {
-      querySnapshot.docs.forEach((result) {
-        if (result.data()["uid"]) {}
-        // print(result.data()["latitude"]);
-      });
-    });
+    double min = 40075; // Correspond au préimètre de la terre
+    String neighborUid = "";
+    FirebaseFirestore.instance.collection("userLocalisation").get().then(
+      (querySnapshot) {
+        querySnapshot.docs.forEach(
+          (result) {
+            if (result.data()["uid"] != getUid()) {
+              double latB = double.parse(result.data()["latitude"]);
+              double longB = double.parse(result.data()["longitude"]);
+              double distance = rayonTerre *
+                  (acos((sin(latitude) * sin(latB)) +
+                      (cos(latitude) * cos(latB) * cos(longitude - longB))));
+              if (distance < min) {
+                min = distance;
+                neighborUid = result.data()["uid"];
+                print(neighborUid);
+              }
+            }
+          },
+        );
+      },
+    ); //  End FirebaseFireStore
   }
 
   checkHeartRateFrequancy() {

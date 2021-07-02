@@ -292,6 +292,8 @@ PODS:
     - GTMSessionFetcher/Core (~> 1.1)
     - TensorFlowLiteObjC (~> 2.3.0)
   - Flutter (1.0.0)
+  - flutter_local_notifications (0.0.1):
+    - Flutter
   - geolocator (6.2.0):
     - Flutter
   - GoogleDataTransport (8.1.0):
@@ -373,6 +375,7 @@ DEPENDENCIES:
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - firebase_ml_custom (from `.symlinks/plugins/firebase_ml_custom/ios`)
   - Flutter (from `Flutter`)
+  - flutter_local_notifications (from `.symlinks/plugins/flutter_local_notifications/ios`)
   - geolocator (from `.symlinks/plugins/geolocator/ios`)
   - health (from `.symlinks/plugins/health/ios`)
 
@@ -414,6 +417,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/firebase_ml_custom/ios"
   Flutter:
     :path: Flutter
+  flutter_local_notifications:
+    :path: ".symlinks/plugins/flutter_local_notifications/ios"
   geolocator:
     :path: ".symlinks/plugins/geolocator/ios"
   health:
@@ -436,6 +441,7 @@ SPEC CHECKSUMS:
   FirebaseMLCommon: cbab07a0cfa19b982819fc9e030e6f3d569c23a6
   FirebaseMLModelInterpreter: 50d25667d10fc154afcc5b8e1196c2583c10392e
   Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
+  flutter_local_notifications: 0c0b1ae97e741e1521e4c1629a459d04b9aec743
   geolocator: f5e3de65e241caba7ce3e8a618803387bda73384
   GoogleDataTransport: 116c84c4bdeb76be2a7a46de51244368f9794eab
   GoogleToolboxForMac: 471e0c05d39506e50e6398f46fa9a12ae0efeff9

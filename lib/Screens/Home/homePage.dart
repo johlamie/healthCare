@@ -64,7 +64,7 @@ class _HomePageState extends State<HomePage> {
     _pageController.jumpToPage(selectedIndex);
   }
 
-  lauchAlert() {
+  signalToNeighbor() {
     double min = 40075; // Correspond au préimètre de la terre
     String neighborUid = "";
     FirebaseFirestore.instance.collection("userLocalisation").get().then(
@@ -80,13 +80,30 @@ class _HomePageState extends State<HomePage> {
               if (distance < min) {
                 min = distance;
                 neighborUid = result.data()["uid"];
-                print(neighborUid);
+                // print(neighborUid);
+                DataBaseService(uid: getUid()).saveAttackValue(
+                  1,
+                  neighborUid,
+                );
               }
             }
           },
         );
       },
     ); //  End FirebaseFireStore
+  }
+
+  lauchAlert() {
+    FirebaseFirestore.instance.collection("heartAttackSignal").get().then(
+      (querySnapshot) {
+        querySnapshot.docs.forEach((result) {
+          var iamneighbor = result.data()["iamneighbor"];
+          if (iamneighbor == 1) {
+            print("Je suis voisin, je lance la notification");
+          }
+        });
+      },
+    );
   }
 
   checkHeartRateFrequancy() {
@@ -99,7 +116,7 @@ class _HomePageState extends State<HomePage> {
             heartRate,
           );
           if (heartRate <= 20) {
-            lauchAlert();
+            signalToNeighbor();
           } else {
             print("GOOD : " + "${heartRate}");
           }

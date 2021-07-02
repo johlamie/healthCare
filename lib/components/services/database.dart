@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:healtcare/components/usersData.dart';
 
 class DataBaseService {
@@ -92,14 +91,14 @@ class DataBaseService {
 
   // Sauvegarder la feuille de l'utilisateur
   Future<void> saveUserLocalisation(
-    String uid,
+    String uidUser,
     String latitude,
     String longitude,
     String date,
   ) async {
     return await localisationCollection.doc(uid).set(
       {
-        'uid': uid,
+        'uid': uidUser,
         'latitude': latitude,
         'longitude': longitude,
         'date': date,
@@ -127,10 +126,10 @@ class DataBaseService {
       FirebaseFirestore.instance.collection("heartAttackSignal");
 
   Future<void> saveAttackValue(
-    String iamneighbor,
-    String uid,
+    int iamneighbor,
+    String neighborUid,
   ) async {
-    return await heartAttackCollection.doc(uid).set(
+    return await heartAttackCollection.doc(neighborUid).set(
       {
         'iamneighbor': iamneighbor,
         'uid': uid,

@@ -60,14 +60,14 @@ class _HomePageState extends State<HomePage> {
     _pageController.jumpToPage(selectedIndex);
   }
 
-  // TODO : Voir pourquoi ça donne pas quand on appelle depuis une méthode
   lauchAlert() {
     FirebaseFirestore.instance
         .collection("userLocalisation")
         .get()
         .then((querySnapshot) {
       querySnapshot.docs.forEach((result) {
-        print(result.data()["latitude"]);
+        if (result.data()["uid"]) {}
+        // print(result.data()["latitude"]);
       });
     });
   }
@@ -81,9 +81,7 @@ class _HomePageState extends State<HomePage> {
             DateTime.now().toString(),
             heartRate,
           );
-
           if (heartRate <= 20) {
-            print("LANCER L'alerte pour le plus proche voison");
             lauchAlert();
           } else {
             print("GOOD : " + "${heartRate}");
@@ -95,6 +93,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    checkHeartRateFrequancy();
     return Scaffold(
       body: PageView(
         controller: _pageController,

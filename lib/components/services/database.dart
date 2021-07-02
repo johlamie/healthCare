@@ -91,12 +91,14 @@ class DataBaseService {
 
   // Sauvegarder la feuille de l'utilisateur
   Future<void> saveUserLocalisation(
+    String uid,
     String latitude,
     String longitude,
     String date,
   ) async {
     return await localisationCollection.doc(uid).set(
       {
+        'uid': uid,
         'latitude': latitude,
         'longitude': longitude,
         'date': date,

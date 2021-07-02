@@ -83,6 +83,7 @@ class Body extends StatelessWidget {
                     DataBaseService(uid: value.uid).saveAttackValue(
                       iamneighbor,
                       "",
+                      0,
                     );
                     Navigator.push(
                       context,

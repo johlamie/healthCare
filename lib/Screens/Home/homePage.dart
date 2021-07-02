@@ -1,13 +1,18 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:healtcare/Screens/Drawer/drawer.dart';
 import 'package:healtcare/Screens/displayHealthData/display_health_data.dart';
+import 'package:healtcare/Screens/predictionScreen/predictionScreen.dart';
 import 'package:healtcare/components/services/database.dart';
 import 'package:healtcare/components/usersData.dart';
 import 'package:healtcare/constants.dart';
 import 'package:geolocator/geolocator.dart';
 import 'dart:math';
+
+import 'package:healtcare/main.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -66,7 +71,7 @@ class _HomePageState extends State<HomePage> {
 
   signalToNeighbor() {
     double min = 40075; // Correspond au préimètre de la terre
-    String neighborUid = "";
+    int distanceM;
     FirebaseFirestore.instance.collection("userLocalisation").get().then(
       (querySnapshot) {
         querySnapshot.docs.forEach(
@@ -79,11 +84,12 @@ class _HomePageState extends State<HomePage> {
                       (cos(latitude) * cos(latB) * cos(longitude - longB))));
               if (distance < min) {
                 min = distance;
-                neighborUid = result.data()["uid"];
+                String neighborUid = result.data()["uid"];
                 // print(neighborUid);
                 DataBaseService(uid: getUid()).saveAttackValue(
                   1,
                   neighborUid,
+                  distance.round(),
                 );
               }
             }
@@ -91,19 +97,40 @@ class _HomePageState extends State<HomePage> {
         );
       },
     ); //  End FirebaseFireStore
+    lauchAlert();
   }
 
   lauchAlert() {
+    var scheduledNotificationDateTime =
+        DateTime.now().add(Duration(seconds: 1));
     FirebaseFirestore.instance.collection("heartAttackSignal").get().then(
       (querySnapshot) {
         querySnapshot.docs.forEach((result) {
           var iamneighbor = result.data()["iamneighbor"];
+          var neighboruid = result.data()["neighboruid"];
+          var distance = result.data()["distance"];
           if (iamneighbor == 1) {
-            print("Je suis voisin, je lance la notification");
+            if (neighboruid == getUid()) {
+              alertNotification('URGENCE', 'AVC Detecter à $distance mètres',
+                  scheduledNotificationDateTime);
+            }
           }
         });
       },
     );
+  }
+
+  void alertNotification(String title, String body, DateTime payload) async {
+    var iOSPlatformChannelSpecifics = IOSNotificationDetails(
+        sound: 'a_long_cold_sting.wav',
+        presentAlert: true,
+        presentBadge: true,
+        presentSound: true);
+    var platformChannelSpecifics =
+        NotificationDetails(iOS: iOSPlatformChannelSpecifics);
+
+    await flutterLocalNotificationsPlugin.schedule(
+        0, title, body, payload, platformChannelSpecifics);
   }
 
   checkHeartRateFrequancy() {

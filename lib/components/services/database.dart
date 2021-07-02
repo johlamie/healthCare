@@ -128,11 +128,13 @@ class DataBaseService {
   Future<void> saveAttackValue(
     int iamneighbor,
     String neighborUid,
+    int distance,
   ) async {
     return await heartAttackCollection.doc(neighborUid).set(
       {
         'iamneighbor': iamneighbor,
-        'uid': uid,
+        'neighboruid': uid,
+        'distance': distance,
       },
     );
   }

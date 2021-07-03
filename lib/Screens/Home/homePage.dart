@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:healtcare/Screens/Drawer/drawer.dart';
 import 'package:healtcare/Screens/displayHealthData/display_health_data.dart';
-import 'package:healtcare/Screens/predictionScreen/predictionScreen.dart';
 import 'package:healtcare/components/services/database.dart';
 import 'package:healtcare/components/usersData.dart';
 import 'package:healtcare/constants.dart';
@@ -70,8 +69,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   signalToNeighbor() {
-    double min = 40075; // Correspond au préimètre de la terre
-    int distanceM;
+    double min = 40075; // Correspond au périmètre de la terre
     FirebaseFirestore.instance.collection("userLocalisation").get().then(
       (querySnapshot) {
         querySnapshot.docs.forEach(
@@ -144,8 +142,6 @@ class _HomePageState extends State<HomePage> {
           );
           if (heartRate <= 20) {
             signalToNeighbor();
-          } else {
-            print("GOOD : " + "${heartRate}");
           }
         });
       },

@@ -6,6 +6,7 @@ import 'package:healtcare/Screens/Drawer/components/pageDrawerButton.dart';
 import 'package:healtcare/Screens/FormulaireInscription/formulaire.dart';
 import 'package:healtcare/Screens/Welcome/welcome_screen.dart';
 import 'package:healtcare/Screens/emergencyContact/emergencyContact.dart';
+import 'package:healtcare/Screens/mapPoint/maps.dart';
 import 'package:healtcare/Screens/predictionScreen/predictionScreen.dart';
 import 'package:healtcare/components/profil_widget.dart';
 import 'package:healtcare/components/userLoginService.dart';
@@ -141,6 +142,23 @@ class Body extends StatelessWidget {
               );
             },
             color: Colors.red[400],
+          ),
+          Divider(
+            color: Colors.black54,
+            //thickness: 10, // pour l'epaissair du diviseur
+          ),
+          PageDrawerBoutton(
+            titre: "MAP",
+            press: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return MapScreen();
+                  },
+                ),
+              );
+            },
           ),
           Divider(
             color: Colors.black54,

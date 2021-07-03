@@ -80,10 +80,8 @@ class Body extends StatelessWidget {
                     .then((value) {
                   if (value.uid != null) {
                     int iamneighbor = 0;
-                    DataBaseService(uid: value.uid).saveAttackValue(
-                      iamneighbor,
-                      "",
-                    );
+                    DataBaseService(uid: value.uid)
+                        .saveAttackValue(iamneighbor, "", 0, 0, 0);
                     Navigator.push(
                       context,
                       MaterialPageRoute(

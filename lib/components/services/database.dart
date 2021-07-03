@@ -116,7 +116,20 @@ class DataBaseService {
   ) async {
     return await heartRateCollection.doc(uid).collection('data').doc(date).set(
       {
+        'date': date,
         'heartRate': heartRate,
+      },
+    );
+  }
+
+  Future<void> saveLastUserHeartRate(
+    String date,
+    int heartRate,
+  ) async {
+    return await heartRateCollection.doc(uid).set(
+      {
+        'date': date,
+        'lastHeartRate': heartRate,
       },
     );
   }
@@ -128,11 +141,35 @@ class DataBaseService {
   Future<void> saveAttackValue(
     int iamneighbor,
     String neighborUid,
+    int distance,
+    double lat,
+    double long,
   ) async {
     return await heartAttackCollection.doc(neighborUid).set(
       {
         'iamneighbor': iamneighbor,
-        'uid': uid,
+        'neighboruid': uid,
+        'distance': distance,
+        'latitude': lat,
+        'longitude': long,
+      },
+    );
+  }
+
+  Future<void> resetAttackValue(
+    int iamneighbor,
+    String neighborUid,
+    int distance,
+    double lat,
+    double long,
+  ) async {
+    return await heartAttackCollection.doc(uid).set(
+      {
+        'iamneighbor': iamneighbor,
+        'neighboruid': uid,
+        'distance': distance,
+        'latitude': lat,
+        'longitude': long,
       },
     );
   }
@@ -228,6 +265,210 @@ class DataBaseService {
         'nom': nom,
         'prenom': prenom,
         'phoneNumber': phoneNumber,
+      },
+    );
+  }
+
+  //-----------------------------WatchData----------------------------------------
+  final CollectionReference dataCollection =
+      FirebaseFirestore.instance.collection("Data");
+
+//-----------------
+  Future<void> saveTrestbps(
+    String date,
+    int trestbps,
+  ) async {
+    return await dataCollection.doc(uid).collection('trestbps').doc(date).set(
+      {
+        'date': date,
+        'trestbps': trestbps,
+      },
+    );
+  }
+
+  Future<void> saveLastTrestbps(
+    String date,
+    int trestbps,
+  ) async {
+    return await dataCollection.doc(uid).set(
+      {
+        'date': date,
+        'trestbps': trestbps,
+      },
+    );
+  }
+
+  //-------------------------
+  Future<void> savechol(
+    String date,
+    int chol,
+  ) async {
+    return await dataCollection.doc(uid).collection('chol').doc(date).set(
+      {
+        'date': date,
+        'chol': chol,
+      },
+    );
+  }
+
+  Future<void> saveLastchol(
+    String date,
+    int chol,
+  ) async {
+    return await dataCollection.doc(uid).set(
+      {
+        'date': date,
+        'chol': chol,
+      },
+    );
+  }
+
+  //-------------------------
+  Future<void> savefbs(
+    String date,
+    int fbs,
+  ) async {
+    return await dataCollection.doc(uid).collection('fbs').doc(date).set(
+      {
+        'date': date,
+        'fbs': fbs,
+      },
+    );
+  }
+
+  Future<void> saveLastfbs(
+    String date,
+    int fbs,
+  ) async {
+    return await dataCollection.doc(uid).set(
+      {
+        'date': date,
+        'fbs': fbs,
+      },
+    );
+  }
+
+  //-------------------------
+  Future<void> saveRestecg(
+    String date,
+    int restecg,
+  ) async {
+    return await dataCollection.doc(uid).collection('restecg').doc(date).set(
+      {
+        'date': date,
+        'restecg': restecg,
+      },
+    );
+  }
+
+  Future<void> saveLastRestecg(
+    String date,
+    int restecg,
+  ) async {
+    return await dataCollection.doc(uid).set(
+      {
+        'date': date,
+        'restecg': restecg,
+      },
+    );
+  }
+
+  //-------------------------
+  Future<void> saveThalach(
+    String date,
+    int thalach,
+  ) async {
+    return await dataCollection.doc(uid).collection('thalach').doc(date).set(
+      {
+        'date': date,
+        'thalach': thalach,
+      },
+    );
+  }
+
+  Future<void> saveLastThalach(
+    String date,
+    int thalach,
+  ) async {
+    return await dataCollection.doc(uid).set(
+      {
+        'date': date,
+        'thalach': thalach,
+      },
+    );
+  }
+
+  //-------------------------
+  Future<void> saveOldpeak(
+    String date,
+    double oldpeak,
+  ) async {
+    return await dataCollection.doc(uid).collection('oldpeak').doc(date).set(
+      {
+        'date': date,
+        'oldpeak': oldpeak,
+      },
+    );
+  }
+
+  Future<void> saveLastOldpeak(
+    String date,
+    double oldpeak,
+  ) async {
+    return await dataCollection.doc(uid).set(
+      {
+        'date': date,
+        'oldpeak': oldpeak,
+      },
+    );
+  }
+
+//-------------------------
+  Future<void> saveSLOPE(
+    String date,
+    int slope,
+  ) async {
+    return await dataCollection.doc(uid).collection('slope').doc(date).set(
+      {
+        'date': date,
+        'slope': slope,
+      },
+    );
+  }
+
+  Future<void> saveLastSLOPE(
+    String date,
+    int slope,
+  ) async {
+    return await dataCollection.doc(uid).set(
+      {
+        'date': date,
+        'slope': slope,
+      },
+    );
+  }
+
+//-------------------------
+  Future<void> saveCA(
+    String date,
+    int ca,
+  ) async {
+    return await dataCollection.doc(uid).collection('ca').doc(date).set(
+      {
+        'date': date,
+        'ca': ca,
+      },
+    );
+  }
+
+  Future<void> saveLastCA(
+    String date,
+    int ca,
+  ) async {
+    return await dataCollection.doc(uid).set(
+      {
+        'date': date,
+        'ca': ca,
       },
     );
   }

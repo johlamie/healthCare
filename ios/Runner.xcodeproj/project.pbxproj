@@ -21,6 +21,7 @@
 /* Begin PBXFileReference section */
 		04234749268CA4680007DEC4 /* LocationESGI2.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = LocationESGI2.gpx; sourceTree = "<group>"; };
 		0423474A268DF9A30007DEC4 /* LocationESGI.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = LocationESGI.gpx; sourceTree = "<group>"; };
+		0423474B2690D12F0007DEC4 /* BdVoltaire.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = BdVoltaire.gpx; sourceTree = "<group>"; };
 		0498178A26399FBE00AEE071 /* Runner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Runner.entitlements; sourceTree = "<group>"; };
 		0498178B26399FBE00AEE071 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		04E11D3F264024BE00372938 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -89,6 +90,7 @@
 		97C146E51CF9000F007C117D = {
 			isa = PBXGroup;
 			children = (
+				0423474B2690D12F0007DEC4 /* BdVoltaire.gpx */,
 				04234749268CA4680007DEC4 /* LocationESGI2.gpx */,
 				0423474A268DF9A30007DEC4 /* LocationESGI.gpx */,
 				9740EEB11CF90186004384FC /* Flutter */,
@@ -138,6 +140,7 @@
 				97C146EC1CF9000F007C117D /* Resources */,
 				3B06AD1E1E4923F5004D2608 /* Thin Binary */,
 				973E038E0D9A1978EA2AD66A /* [CP] Embed Pods Frameworks */,
+				01D4649D8F74281CA5943C2A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -197,6 +200,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		01D4649D8F74281CA5943C2A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		3B06AD1E1E4923F5004D2608 /* Thin Binary */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

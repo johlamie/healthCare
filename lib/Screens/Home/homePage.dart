@@ -90,8 +90,8 @@ class _HomePageState extends State<HomePage> {
                   1,
                   neighborUid,
                   distance.round(),
-                  latB,
-                  longB,
+                  latitude,
+                  longitude,
                 );
                 // lauchAlert(LatLng(latB, longB));48,852951  2,393181
               }
@@ -127,6 +127,8 @@ class _HomePageState extends State<HomePage> {
                   double oLat = result.data()["latitude"];
                   double oLong = result.data()["longitude"];
                   LatLng other = LatLng(oLat, oLong);
+                  print("Me :  $me");
+                  print("Other : $other");
                   return MapScreen(me, other);
                 },
               ),
@@ -159,11 +161,14 @@ class _HomePageState extends State<HomePage> {
             DateTime.now().toString(),
             heartRate,
           );
-          DataBaseService(uid: getUid()).saveLastUserHeartRate(
+          /*DataBaseService(uid: getUid()).saveLastUserHeartRate(
             DateTime.now().toString(),
             heartRate,
-          );
-          checkHeartRateFrequancy();
+          );*/
+          if (heartRate <= 20) {
+            signalToNeighbor();
+          }
+          // checkHeartRateFrequancy();
         });
       },
     );

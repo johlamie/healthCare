@@ -159,12 +159,16 @@ class DataBaseService {
     int iamneighbor,
     String neighborUid,
     int distance,
+    double lat,
+    double long,
   ) async {
     return await heartAttackCollection.doc(uid).set(
       {
         'iamneighbor': iamneighbor,
         'neighboruid': uid,
         'distance': distance,
+        'latitude': lat,
+        'longitude': long,
       },
     );
   }

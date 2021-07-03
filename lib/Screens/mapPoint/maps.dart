@@ -127,6 +127,8 @@ class _MapScreenState extends State<MapScreen> {
                 0,
                 "",
                 0,
+                0,
+                0,
               );
 
               Navigator.push(

@@ -25,8 +25,8 @@ class _HomePageState extends State<HomePage> {
   List<Widget> _screens = [DisplayHealthData(), DrawerPage()];
   int _selectedIndex = 0;
   double rayonTerre = 6371;
-  double latitude;
-  double longitude;
+  double latitude = 0;
+  double longitude = 0;
 
   String getUid() {
     final FirebaseAuth auth = FirebaseAuth.instance;
@@ -90,42 +90,49 @@ class _HomePageState extends State<HomePage> {
                   1,
                   neighborUid,
                   distance.round(),
+                  latB,
+                  longB,
                 );
+                // lauchAlert(LatLng(latB, longB));48,852951  2,393181
               }
             }
           },
         );
       },
     ); //  End FirebaseFireStore
-    lauchAlert();
+    // lauchAlert(LatLng(latB, longB));
   }
 
   lauchAlert() {
     var scheduledNotificationDateTime =
-        DateTime.now().add(Duration(seconds: 1));
-    FirebaseFirestore.instance.collection("heartAttackSignal").get().then(
-      (querySnapshot) {
-        querySnapshot.docs.forEach((result) {
-          var iamneighbor = result.data()["iamneighbor"];
-          var neighboruid = result.data()["neighboruid"];
-          var distance = result.data()["distance"];
-          if (iamneighbor == 1) {
-            if (neighboruid == getUid()) {
-              alertNotification('URGENCE', 'AVC Detecter à $distance mètres',
-                  scheduledNotificationDateTime);
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    LatLng me = LatLng(latitude, longitude);
-                    LatLng other = LatLng(latitude, longitude);
-                    return MapScreen(me, other);
-                  },
-                ),
-              );
-            }
+        DateTime.now().add(Duration(seconds: 3));
+    FirebaseFirestore.instance
+        .collection("heartAttackSignal")
+        .doc(getUid())
+        .get()
+        .then(
+      (result) {
+        var iamneighbor = result.data()["iamneighbor"];
+        var neighboruid = result.data()["neighboruid"];
+        var distance = result.data()["distance"];
+        if (iamneighbor == 1) {
+          if (neighboruid != getUid()) {
+            alertNotification('URGENCE', 'AVC Detecter à $distance mètres',
+                scheduledNotificationDateTime);
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) {
+                  LatLng me = LatLng(latitude, longitude);
+                  double oLat = result.data()["latitude"];
+                  double oLong = result.data()["longitude"];
+                  LatLng other = LatLng(oLat, oLong);
+                  return MapScreen(me, other);
+                },
+              ),
+            );
           }
-        });
+        }
       },
     );
   }
@@ -143,7 +150,7 @@ class _HomePageState extends State<HomePage> {
         0, title, body, payload, platformChannelSpecifics);
   }
 
-  checkHeartRateFrequancy() {
+  saveHeartRateFrequancy() {
     FirebaseFirestore.instance.collection("heartRateSimulation").get().then(
       (querySnapshot) {
         querySnapshot.docs.forEach((result) {
@@ -152,17 +159,31 @@ class _HomePageState extends State<HomePage> {
             DateTime.now().toString(),
             heartRate,
           );
-          if (heartRate <= 20) {
-            signalToNeighbor();
-          }
+          DataBaseService(uid: getUid()).saveLastUserHeartRate(
+            DateTime.now().toString(),
+            heartRate,
+          );
+          checkHeartRateFrequancy();
         });
+      },
+    );
+  }
+
+  checkHeartRateFrequancy() {
+    FirebaseFirestore.instance.collection("heartRate").doc(getUid()).get().then(
+      (result) {
+        var lastheartRate = result.data()["lastHeartRate"];
+        if (lastheartRate <= 20) {
+          signalToNeighbor();
+        }
       },
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    checkHeartRateFrequancy();
+    saveHeartRateFrequancy();
+    lauchAlert();
     return Scaffold(
       body: PageView(
         controller: _pageController,

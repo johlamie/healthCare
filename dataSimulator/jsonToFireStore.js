@@ -20,7 +20,7 @@ var menu = [
   },
   {
     "id": 2,
-    "value": 20
+    "value": 17
   },
   {
     "id": 3,

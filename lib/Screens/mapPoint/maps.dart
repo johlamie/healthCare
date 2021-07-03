@@ -1,4 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:healtcare/Screens/Home/homePage.dart';
+import 'package:healtcare/components/services/database.dart';
 import 'package:healtcare/components/services/directionModel.dart';
 // import 'package:healtcare/components/services/directionRepository.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -19,15 +22,38 @@ class _MapScreenState extends State<MapScreen> {
   Marker _origin, _destination;
   CameraPosition _initialCameraPosition;
 
-  void initState() {
+  GoogleMapController _googleMapController;
+  Directions _info;
+
+  String getUid() {
+    final FirebaseAuth auth = FirebaseAuth.instance;
+    final User user = auth.currentUser;
+    final String currentUid = user.uid;
+    return currentUid;
+  }
+
+  @override
+  void dispose() {
+    _googleMapController.dispose();
+    super.dispose();
+  }
+
+  getTrajet(Marker dep, Marker arriv) async {
+    final directions = await DirectionsRepository()
+        .getDirections(origin: dep.position, destination: arriv.position);
+    setState(() => _info = directions);
+  }
+
+  @override
+  Widget build(BuildContext context) {
     mine = widget.me;
     destination = widget.other;
     // Initialisation de la map de premier plan
-    _initialCameraPosition = CameraPosition(target: widget.me, zoom: 15);
+    _initialCameraPosition = CameraPosition(target: widget.me, zoom: 14);
     // Initialisation du Marker de l'utilisateur courant
     _origin = Marker(
       markerId: MarkerId('id-1'),
-      position: widget.me, // LatLng(48.8490673, 2.3897295),
+      position: widget.me,
       icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen),
       infoWindow: InfoWindow(
         title: "Vous",
@@ -44,27 +70,7 @@ class _MapScreenState extends State<MapScreen> {
         snippet: "Depechez-vous!!!",
       ),
     );
-    super.initState();
-  }
-
-  GoogleMapController _googleMapController;
-  Directions _info;
-
-  @override
-  void dispose() {
-    _googleMapController.dispose();
-    super.dispose();
-  }
-
-  getTrajet() async {
-    final directions = await DirectionsRepository().getDirections(
-        origin: _origin.position, destination: _destination.position);
-    setState(() => _info = directions);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    getTrajet();
+    getTrajet(_origin, _destination);
     return Scaffold(
       appBar: AppBar(
         centerTitle: false,
@@ -87,7 +93,7 @@ class _MapScreenState extends State<MapScreen> {
                 CameraUpdate.newCameraPosition(
                   CameraPosition(
                     target: _origin.position,
-                    zoom: 14.5,
+                    zoom: 17,
                     tilt: 50.0,
                   ),
                 ),
@@ -104,7 +110,7 @@ class _MapScreenState extends State<MapScreen> {
                 CameraUpdate.newCameraPosition(
                   CameraPosition(
                     target: _destination.position,
-                    zoom: 14.5,
+                    zoom: 17,
                     tilt: 50.0,
                   ),
                 ),
@@ -114,7 +120,30 @@ class _MapScreenState extends State<MapScreen> {
                 textStyle: const TextStyle(fontWeight: FontWeight.w600),
               ),
               child: const Text('Secourir'),
-            )
+            ),
+          TextButton(
+            onPressed: () {
+              DataBaseService(uid: getUid()).resetAttackValue(
+                0,
+                "",
+                0,
+              );
+
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return HomePage();
+                  },
+                ),
+              );
+            },
+            style: TextButton.styleFrom(
+              primary: Colors.black54,
+              textStyle: const TextStyle(fontWeight: FontWeight.w600),
+            ),
+            child: const Text('END'),
+          )
         ],
       ),
       body: Stack(
@@ -175,12 +204,14 @@ class _MapScreenState extends State<MapScreen> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.white70,
         foregroundColor: Colors.black,
-        onPressed: () => _googleMapController.animateCamera(
-          _info != null
-              ? CameraUpdate.newLatLngBounds(_info.bounds, 100.0)
-              : CameraUpdate.newCameraPosition(_initialCameraPosition),
-        ),
         child: const Icon(Icons.center_focus_strong),
+        onPressed: () {
+          _googleMapController.animateCamera(
+            _info != null
+                ? CameraUpdate.newLatLngBounds(_info.bounds, 100.0)
+                : CameraUpdate.newCameraPosition(_initialCameraPosition),
+          );
+        },
       ),
     );
   }

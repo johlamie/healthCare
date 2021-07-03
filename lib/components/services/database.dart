@@ -121,6 +121,18 @@ class DataBaseService {
     );
   }
 
+  Future<void> saveLastUserHeartRate(
+    String date,
+    int heartRate,
+  ) async {
+    return await heartRateCollection.doc(uid).set(
+      {
+        'date': date,
+        'lastHeartRate': heartRate,
+      },
+    );
+  }
+
 // ---------------------HEART ATTACK SIGNAL---------------------
   final CollectionReference heartAttackCollection =
       FirebaseFirestore.instance.collection("heartAttackSignal");
@@ -129,8 +141,26 @@ class DataBaseService {
     int iamneighbor,
     String neighborUid,
     int distance,
+    double lat,
+    double long,
   ) async {
     return await heartAttackCollection.doc(neighborUid).set(
+      {
+        'iamneighbor': iamneighbor,
+        'neighboruid': uid,
+        'distance': distance,
+        'latitude': lat,
+        'longitude': long,
+      },
+    );
+  }
+
+  Future<void> resetAttackValue(
+    int iamneighbor,
+    String neighborUid,
+    int distance,
+  ) async {
+    return await heartAttackCollection.doc(uid).set(
       {
         'iamneighbor': iamneighbor,
         'neighboruid': uid,

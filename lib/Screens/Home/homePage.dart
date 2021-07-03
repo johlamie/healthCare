@@ -3,8 +3,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:healtcare/Screens/Drawer/drawer.dart';
 import 'package:healtcare/Screens/displayHealthData/display_health_data.dart';
+import 'package:healtcare/Screens/mapPoint/maps.dart';
 import 'package:healtcare/components/services/database.dart';
 import 'package:healtcare/components/usersData.dart';
 import 'package:healtcare/constants.dart';
@@ -111,6 +113,16 @@ class _HomePageState extends State<HomePage> {
             if (neighboruid == getUid()) {
               alertNotification('URGENCE', 'AVC Detecter à $distance mètres',
                   scheduledNotificationDateTime);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    LatLng me = LatLng(latitude, longitude);
+                    LatLng other = LatLng(latitude, longitude);
+                    return MapScreen(me, other);
+                  },
+                ),
+              );
             }
           }
         });

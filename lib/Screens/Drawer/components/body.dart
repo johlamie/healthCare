@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:healtcare/Screens/Account/accountPage.dart';
 import 'package:healtcare/Screens/Drawer/components/pageDrawerButton.dart';
 import 'package:healtcare/Screens/FormulaireInscription/formulaire.dart';
@@ -154,7 +155,8 @@ class Body extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                   builder: (context) {
-                    return MapScreen();
+                    return MapScreen(LatLng(48.8490673, 2.3897295),
+                        LatLng(48.85295053585623, 2.3931813794808043));
                   },
                 ),
               );

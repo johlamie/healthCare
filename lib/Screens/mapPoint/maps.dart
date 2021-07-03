@@ -6,35 +6,48 @@ import 'package:healtcare/components/services/directionRepository.dart';
 import 'package:healtcare/constants.dart';
 
 class MapScreen extends StatefulWidget {
+  final LatLng me;
+  final LatLng other;
+  MapScreen(this.me, this.other);
+
   @override
   _MapScreenState createState() => _MapScreenState();
 }
 
 class _MapScreenState extends State<MapScreen> {
-  static const _initialCameraPosition = CameraPosition(
-    target: LatLng(48.8490672, 2.3897291666666667),
-    zoom: 15,
-  );
+  LatLng mine, destination;
+  Marker _origin, _destination;
+  CameraPosition _initialCameraPosition;
+
+  void initState() {
+    mine = widget.me;
+    destination = widget.other;
+    // Initialisation de la map de premier plan
+    _initialCameraPosition = CameraPosition(target: widget.me, zoom: 15);
+    // Initialisation du Marker de l'utilisateur courant
+    _origin = Marker(
+      markerId: MarkerId('id-1'),
+      position: widget.me, // LatLng(48.8490673, 2.3897295),
+      icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen),
+      infoWindow: InfoWindow(
+        title: "Vous",
+        snippet: "Vous êtes ici.",
+      ),
+    );
+    // Initialisation du Marker de l'utilisateur en détresse
+    _destination = Marker(
+      markerId: MarkerId('id-2'),
+      position: widget.other,
+      icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
+      infoWindow: InfoWindow(
+        title: "URGENCE",
+        snippet: "Depechez-vous!!!",
+      ),
+    );
+    super.initState();
+  }
 
   GoogleMapController _googleMapController;
-  Marker _origin = Marker(
-    markerId: MarkerId('id-1'),
-    position: LatLng(48.8490673, 2.3897295),
-    icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen),
-    infoWindow: InfoWindow(
-      title: "Vous",
-      snippet: "Vous êtes ici.",
-    ),
-  );
-  Marker _destination = Marker(
-    markerId: MarkerId('id-2'),
-    position: LatLng(48.85295053585623, 2.3931813794808043),
-    icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
-    infoWindow: InfoWindow(
-      title: "URGENCE",
-      snippet: "Depechez-vous!!!",
-    ),
-  );
   Directions _info;
 
   @override

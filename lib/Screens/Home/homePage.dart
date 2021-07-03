@@ -85,7 +85,6 @@ class _HomePageState extends State<HomePage> {
               if (distance < min) {
                 min = distance;
                 String neighborUid = result.data()["uid"];
-                // print(neighborUid);
                 DataBaseService(uid: getUid()).saveAttackValue(
                   1,
                   neighborUid,
@@ -127,8 +126,6 @@ class _HomePageState extends State<HomePage> {
                   double oLat = result.data()["latitude"];
                   double oLong = result.data()["longitude"];
                   LatLng other = LatLng(oLat, oLong);
-                  print("Me :  $me");
-                  print("Other : $other");
                   return MapScreen(me, other);
                 },
               ),
@@ -161,15 +158,31 @@ class _HomePageState extends State<HomePage> {
             DateTime.now().toString(),
             heartRate,
           );
-          /*DataBaseService(uid: getUid()).saveLastUserHeartRate(
+          DataBaseService(uid: getUid()).saveLastUserHeartRate(
             DateTime.now().toString(),
             heartRate,
-          );*/
+          );
           if (heartRate <= 20) {
             signalToNeighbor();
           }
           // checkHeartRateFrequancy();
         });
+      },
+    );
+  }
+
+  saveWatchData() {
+    FirebaseFirestore.instance
+        .collection("watchSimulation")
+        .doc("simulation")
+        .get()
+        .then(
+      (result) {
+        var heartRate = result.data()["value"];
+        DataBaseService(uid: getUid()).saveUserHeartRate(
+          DateTime.now().toString(),
+          heartRate,
+        );
       },
     );
   }

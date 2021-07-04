@@ -70,6 +70,7 @@ class _HomePageState extends State<HomePage> {
     _pageController.jumpToPage(selectedIndex);
   }
 
+//------------- Gestion Alerte Notification et signalement au plus proche voisin
   signalToNeighbor() {
     double min = 40075; // Correspond au périmètre de la terre
     FirebaseFirestore.instance.collection("userLocalisation").get().then(
@@ -149,6 +150,7 @@ class _HomePageState extends State<HomePage> {
         0, title, body, payload, platformChannelSpecifics);
   }
 
+//------------- Stockage FireStore
   saveHeartRateFrequancy() {
     FirebaseFirestore.instance.collection("heartRateSimulation").get().then(
       (querySnapshot) {
@@ -178,12 +180,103 @@ class _HomePageState extends State<HomePage> {
         .get()
         .then(
       (result) {
-        var heartRate = result.data()["value"];
-        DataBaseService(uid: getUid()).saveUserHeartRate(
-          DateTime.now().toString(),
-          heartRate,
-        );
+        saveTrestbps(result.data()["trestbps"]);
+        savechol(result.data()["chol"]);
+        savefbs(result.data()["fbs"]);
+        saveRestecg(result.data()["restecg"]);
+        saveThalach(result.data()["thalach"]);
+        saveOldpeak(result.data()["oldpeak"]);
+        saveSLOPE(result.data()["slope"]);
+        saveCA(result.data()["ca"]);
       },
+    );
+  }
+
+  saveTrestbps(int value) {
+    DataBaseService(uid: getUid()).saveTrestbps(
+      DateTime.now().toString(),
+      value,
+    );
+    DataBaseService(uid: getUid()).saveLastTrestbps(
+      DateTime.now().toString(),
+      value,
+    );
+  }
+
+  savechol(int value) {
+    DataBaseService(uid: getUid()).savechol(
+      DateTime.now().toString(),
+      value,
+    );
+    DataBaseService(uid: getUid()).saveLastchol(
+      DateTime.now().toString(),
+      value,
+    );
+  }
+
+  savefbs(int value) {
+    DataBaseService(uid: getUid()).savefbs(
+      DateTime.now().toString(),
+      value,
+    );
+    DataBaseService(uid: getUid()).saveLastfbs(
+      DateTime.now().toString(),
+      value,
+    );
+  }
+
+  saveRestecg(int value) {
+    DataBaseService(uid: getUid()).saveRestecg(
+      DateTime.now().toString(),
+      value,
+    );
+    DataBaseService(uid: getUid()).saveLastRestecg(
+      DateTime.now().toString(),
+      value,
+    );
+  }
+
+  saveThalach(int value) {
+    DataBaseService(uid: getUid()).saveThalach(
+      DateTime.now().toString(),
+      value,
+    );
+    DataBaseService(uid: getUid()).saveLastThalach(
+      DateTime.now().toString(),
+      value,
+    );
+  }
+
+  saveOldpeak(double value) {
+    DataBaseService(uid: getUid()).saveOldpeak(
+      DateTime.now().toString(),
+      value,
+    );
+    DataBaseService(uid: getUid()).saveLastOldpeak(
+      DateTime.now().toString(),
+      value,
+    );
+  }
+
+  saveSLOPE(int value) {
+    DataBaseService(uid: getUid()).saveSLOPE(
+      DateTime.now().toString(),
+      value,
+    );
+    DataBaseService(uid: getUid()).saveLastSLOPE(
+      DateTime.now().toString(),
+      value,
+    );
+  }
+
+  saveCA(int value) {
+    DataBaseService(uid: getUid()).saveCA(
+      DateTime.now().toString(),
+      value,
+    );
+    DataBaseService(uid: getUid()).saveLastCA(
+      DateTime.now().toString(),
+      value,
     );
   }
 
@@ -201,6 +294,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     saveHeartRateFrequancy();
+    saveWatchData();
     lauchAlert();
     return Scaffold(
       body: PageView(

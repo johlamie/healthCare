@@ -42,8 +42,6 @@ dependencies:
   google_maps_flutter: ^2.0.6
   flutter_polyline_points: ^0.2.4
   dio: ^3.0.10
-  tflite: ^1.1.2
-  tflite_flutter: ^0.5.0
 
 dev_dependencies:
   flutter_test:

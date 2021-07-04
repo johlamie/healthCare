@@ -278,7 +278,13 @@ class DataBaseService {
     String date,
     int trestbps,
   ) async {
-    return await dataCollection.doc(uid).collection('trestbps').doc(date).set(
+    return await dataCollection
+        .doc(uid)
+        .collection('trestbps')
+        .doc("docData")
+        .collection('data')
+        .doc(date)
+        .set(
       {
         'date': date,
         'trestbps': trestbps,
@@ -290,7 +296,11 @@ class DataBaseService {
     String date,
     int trestbps,
   ) async {
-    return await dataCollection.doc(uid).set(
+    return await dataCollection
+        .doc(uid)
+        .collection('trestbps')
+        .doc("docData")
+        .set(
       {
         'date': date,
         'trestbps': trestbps,
@@ -303,7 +313,13 @@ class DataBaseService {
     String date,
     int chol,
   ) async {
-    return await dataCollection.doc(uid).collection('chol').doc(date).set(
+    return await dataCollection
+        .doc(uid)
+        .collection('chol')
+        .doc("docData")
+        .collection('data')
+        .doc(date)
+        .set(
       {
         'date': date,
         'chol': chol,
@@ -315,7 +331,7 @@ class DataBaseService {
     String date,
     int chol,
   ) async {
-    return await dataCollection.doc(uid).set(
+    return await dataCollection.doc(uid).collection('chol').doc("docData").set(
       {
         'date': date,
         'chol': chol,
@@ -328,7 +344,13 @@ class DataBaseService {
     String date,
     int fbs,
   ) async {
-    return await dataCollection.doc(uid).collection('fbs').doc(date).set(
+    return await dataCollection
+        .doc(uid)
+        .collection('fbs')
+        .doc("docData")
+        .collection('data')
+        .doc(date)
+        .set(
       {
         'date': date,
         'fbs': fbs,
@@ -340,7 +362,7 @@ class DataBaseService {
     String date,
     int fbs,
   ) async {
-    return await dataCollection.doc(uid).set(
+    return await dataCollection.doc(uid).collection('fbs').doc("docData").set(
       {
         'date': date,
         'fbs': fbs,
@@ -353,7 +375,13 @@ class DataBaseService {
     String date,
     int restecg,
   ) async {
-    return await dataCollection.doc(uid).collection('restecg').doc(date).set(
+    return await dataCollection
+        .doc(uid)
+        .collection('restecg')
+        .doc("docData")
+        .collection('data')
+        .doc(date)
+        .set(
       {
         'date': date,
         'restecg': restecg,
@@ -365,7 +393,11 @@ class DataBaseService {
     String date,
     int restecg,
   ) async {
-    return await dataCollection.doc(uid).set(
+    return await dataCollection
+        .doc(uid)
+        .collection('restecg')
+        .doc("docData")
+        .set(
       {
         'date': date,
         'restecg': restecg,
@@ -378,7 +410,13 @@ class DataBaseService {
     String date,
     int thalach,
   ) async {
-    return await dataCollection.doc(uid).collection('thalach').doc(date).set(
+    return await dataCollection
+        .doc(uid)
+        .collection('thalach')
+        .doc("docData")
+        .collection('data')
+        .doc(date)
+        .set(
       {
         'date': date,
         'thalach': thalach,
@@ -390,7 +428,11 @@ class DataBaseService {
     String date,
     int thalach,
   ) async {
-    return await dataCollection.doc(uid).set(
+    return await dataCollection
+        .doc(uid)
+        .collection('thalach')
+        .doc("docData")
+        .set(
       {
         'date': date,
         'thalach': thalach,
@@ -403,7 +445,13 @@ class DataBaseService {
     String date,
     double oldpeak,
   ) async {
-    return await dataCollection.doc(uid).collection('oldpeak').doc(date).set(
+    return await dataCollection
+        .doc(uid)
+        .collection('oldpeak')
+        .doc("docData")
+        .collection('data')
+        .doc(date)
+        .set(
       {
         'date': date,
         'oldpeak': oldpeak,
@@ -415,7 +463,11 @@ class DataBaseService {
     String date,
     double oldpeak,
   ) async {
-    return await dataCollection.doc(uid).set(
+    return await dataCollection
+        .doc(uid)
+        .collection('oldpeak')
+        .doc("docData")
+        .set(
       {
         'date': date,
         'oldpeak': oldpeak,
@@ -428,7 +480,13 @@ class DataBaseService {
     String date,
     int slope,
   ) async {
-    return await dataCollection.doc(uid).collection('slope').doc(date).set(
+    return await dataCollection
+        .doc(uid)
+        .collection('slope')
+        .doc("docData")
+        .collection('data')
+        .doc(date)
+        .set(
       {
         'date': date,
         'slope': slope,
@@ -440,7 +498,7 @@ class DataBaseService {
     String date,
     int slope,
   ) async {
-    return await dataCollection.doc(uid).set(
+    return await dataCollection.doc(uid).collection('slope').doc("docData").set(
       {
         'date': date,
         'slope': slope,
@@ -453,7 +511,13 @@ class DataBaseService {
     String date,
     int ca,
   ) async {
-    return await dataCollection.doc(uid).collection('ca').doc(date).set(
+    return await dataCollection
+        .doc(uid)
+        .collection('ca')
+        .doc("docData")
+        .collection('data')
+        .doc(date)
+        .set(
       {
         'date': date,
         'ca': ca,
@@ -465,7 +529,7 @@ class DataBaseService {
     String date,
     int ca,
   ) async {
-    return await dataCollection.doc(uid).set(
+    return await dataCollection.doc(uid).collection('ca').doc("docData").set(
       {
         'date': date,
         'ca': ca,

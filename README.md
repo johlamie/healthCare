@@ -22,7 +22,14 @@ Pour lancer le simulateur, il faut se placer dans le répertoire 'dataSimulator'
 ```
 node jsonToFireStore.js
 ```
+Une fois lancer, à chaque écriture il y a un retour dans le terminal pour indiquer que les données  a été correctement envoyé.
+AVANT ENVOIE : 
+
 <img width="570" alt="Capture " src="https://user-images.githubusercontent.com/48968323/124392107-31c42080-dcf4-11eb-99db-8b75bde313a4.png">
+
+APRES ENVOIE : 
+
+<img width="570" alt="Capture " src="https://user-images.githubusercontent.com/48968323/124402605-a5d0e980-dd31-11eb-8c0f-518128c45323.png">
 
 
 ### Application HealthCare

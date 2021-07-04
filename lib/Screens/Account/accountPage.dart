@@ -21,7 +21,7 @@ class _AccountPageState extends State<AccountPage> {
         ),
         backgroundColor: Colors.white,
         title: Text(
-          "Contacts d'urgence",
+          "Informations",
           style: TextStyle(color: Colors.black),
         ),
       ),

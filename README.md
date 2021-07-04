@@ -109,6 +109,15 @@ Pour avoir un aperçu plus large de la manière dont sont stockées les données
 
 
 ## IA
+Pipeline d’implémentation de l’IA :
+-	Implémentation du module, sauvegarde, conversion et déploiement dans ML Kit de FireBase ;
+-	Appel du model dans l’application mobile ;
+-	Collecte de données, pour un enrichissement du dataset et une mise à jour continue du modèle ;
+-	Analyse et affichage des données dans l’application ;
+-	Mise à jour et redéploiement du modèle dans l'application.
+
+![image](https://user-images.githubusercontent.com/48968323/124401968-35c06480-dd2d-11eb-800a-6cf0c851b177.png)
+
 Le DataSet utilisé est un dataset multivarié disponible ici (https://archive.ics.uci.edu/ml/datasets/Heart+Disease). Il contient 76 Attributs, mais toutes les expériences publiées se réfèrent à l'utilisation d'un sous-ensemble de 14 d'entre eux :
 
 - âge : l’âge en année

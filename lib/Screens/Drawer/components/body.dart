@@ -126,7 +126,7 @@ class Body extends StatelessWidget {
               );
             },
           ),
-          Divider(
+          /*Divider(
             color: Colors.black54,
             //thickness: 10, // pour l'epaissair du diviseur
           ),
@@ -143,7 +143,7 @@ class Body extends StatelessWidget {
               );
             },
             color: Colors.red[400],
-          ),
+          ),*/
           Divider(
             color: Colors.black54,
             //thickness: 10, // pour l'epaissair du diviseur

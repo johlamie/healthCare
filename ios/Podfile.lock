@@ -370,6 +370,8 @@ PODS:
   - nanopb/encode (2.30906.0)
   - PromisesObjC (1.2.12)
   - Protobuf (3.17.0)
+  - shared_preferences (0.0.1):
+    - Flutter
   - TensorFlowLiteC (2.3.0):
     - TensorFlowLiteC/Core (= 2.3.0)
   - TensorFlowLiteC/Core (2.3.0)
@@ -387,6 +389,7 @@ DEPENDENCIES:
   - geolocator (from `.symlinks/plugins/geolocator/ios`)
   - google_maps_flutter (from `.symlinks/plugins/google_maps_flutter/ios`)
   - health (from `.symlinks/plugins/health/ios`)
+  - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
 
 SPEC REPOS:
   trunk:
@@ -435,6 +438,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/google_maps_flutter/ios"
   health:
     :path: ".symlinks/plugins/health/ios"
+  shared_preferences:
+    :path: ".symlinks/plugins/shared_preferences/ios"
 
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
@@ -468,6 +473,7 @@ SPEC CHECKSUMS:
   nanopb: 1bf24dd71191072e120b83dd02d08f3da0d65e53
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   Protobuf: 7327d4444215b5f18e560a97f879ff5503c4581c
+  shared_preferences: af6bfa751691cdc24be3045c43ec037377ada40d
   TensorFlowLiteC: 51f50caf5777f740a70e2c1a5dbdc149e7aeb50b
   TensorFlowLiteObjC: 5b358503636cffcbbafd8b0ac9badb577fd72800
 

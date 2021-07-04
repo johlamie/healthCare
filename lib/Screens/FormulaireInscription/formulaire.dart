@@ -1,10 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:healtcare/Screens/Home/homePage.dart';
 import 'package:healtcare/Screens/predictionScreen/predictionScreen.dart';
 import 'package:healtcare/components/rouded_button.dart';
 import 'package:healtcare/components/services/database.dart';
 import 'package:healtcare/constants.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class FormScreen extends StatefulWidget {
   @override
@@ -137,10 +140,10 @@ class _FormScreenState extends State<FormScreen> {
 
   String valueChoose;
   List douleurListItems = [
-    "1",
-    "2",
-    "3",
-    "4",
+    "angine typique",
+    "angine atypique",
+    "douleur non angineuse",
+    "asymptomatique",
   ];
   Widget _buildDouleurThoraxique() {
     return DropdownButton(
@@ -428,8 +431,111 @@ class _FormScreenState extends State<FormScreen> {
     );
   }
 
+  String caD, cholD, fbsD, oldpeakD, restecgD, slopeD, thalachD, trestbpsD;
+
+  getDataOnFireBase() {
+    FirebaseFirestore.instance
+        .collection("Data")
+        .doc(getUid())
+        .collection('ca')
+        .doc('docData')
+        .get()
+        .then((result) {
+      caD = result.data()["ca"].toString();
+    });
+
+    FirebaseFirestore.instance
+        .collection("Data")
+        .doc(getUid())
+        .collection('chol')
+        .doc('docData')
+        .get()
+        .then((result) {
+      cholD = result.data()["chol"].toString();
+    });
+
+    FirebaseFirestore.instance
+        .collection("Data")
+        .doc(getUid())
+        .collection('fbs')
+        .doc('docData')
+        .get()
+        .then((result) {
+      fbsD = result.data()["fbs"].toString();
+    });
+
+    FirebaseFirestore.instance
+        .collection("Data")
+        .doc(getUid())
+        .collection('oldpeak')
+        .doc('docData')
+        .get()
+        .then((result) {
+      oldpeakD = result.data()["oldpeak"].toString();
+    });
+
+    FirebaseFirestore.instance
+        .collection("Data")
+        .doc(getUid())
+        .collection('restecg')
+        .doc('docData')
+        .get()
+        .then((result) {
+      restecgD = result.data()["restecg"].toString();
+    });
+
+    FirebaseFirestore.instance
+        .collection("Data")
+        .doc(getUid())
+        .collection('slope')
+        .doc('docData')
+        .get()
+        .then((result) {
+      slopeD = result.data()["slope"].toString();
+    });
+
+    FirebaseFirestore.instance
+        .collection("heartRate")
+        .doc(getUid())
+        .get()
+        .then((result) {
+      thalachD = result.data()["lastHeartRate"].toString();
+    });
+
+    FirebaseFirestore.instance
+        .collection("Data")
+        .doc(getUid())
+        .collection('trestbps')
+        .doc('docData')
+        .get()
+        .then((result) {
+      trestbpsD = result.data()["trestbps"].toString();
+    });
+  }
+
+  showDiaologDataAbs(BuildContext context) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text("En Attente des données Montres"),
+            content: Text(
+                "Données issus de la montre non trouvée, merci de patienter ou lancer le "),
+            actions: <Widget>[
+              FlatButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text("OK"))
+            ],
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
+    getDataOnFireBase();
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -454,7 +560,7 @@ class _FormScreenState extends State<FormScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                SingleChildScrollView(
+                /*SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: [
@@ -463,10 +569,11 @@ class _FormScreenState extends State<FormScreen> {
                     ],
                   ),
                 ),
-                SizedBox(height: 10),
+                SizedBox(height: 10),*/
                 Row(
                   children: [
-                    Text("Niveau de douleur Thoraxique : "),
+                    Text("Type Douleur Thorax: "),
+                    SizedBox(width: 1),
                     _buildDouleurThoraxique(),
                   ],
                 ),
@@ -500,28 +607,42 @@ class _FormScreenState extends State<FormScreen> {
                       return;
                     }
                     _formKey.currentState.save();
-                    DataBaseService(uid: getUid()).saveData(
-                      birth,
-                      sexe,
-                      chestPain,
-                      bloodPressure,
-                      chol,
-                      bloodSugar,
-                      restingECG,
-                      maximumHeartRate,
-                      exang,
-                      oldSpeak,
-                      slope,
-                      nbMajorVesselsColored,
-                      troubleSanguin,
-                      healthDiseases,
-                    );
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => PredictionScreen(),
-                      ),
-                    );
+                    print(caD);
+                    if (caD == null ||
+                        cholD == null ||
+                        fbsD == null ||
+                        oldpeakD == null ||
+                        restecgD == null ||
+                        slopeD == null ||
+                        thalachD == null ||
+                        trestbpsD == null) {
+                      Future.delayed(
+                          Duration.zero, () => showDiaologDataAbs(context));
+                    } else {
+                      // print("object");
+                      DataBaseService(uid: getUid()).saveData(
+                        birth,
+                        sexe,
+                        chestPain,
+                        trestbpsD,
+                        cholD,
+                        fbsD,
+                        restecgD,
+                        thalachD, // max heartRate
+                        exang,
+                        oldpeakD,
+                        slopeD,
+                        caD,
+                        troubleSanguin,
+                        healthDiseases,
+                      );
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => HomePage(),
+                        ),
+                      );
+                    }
                   },
                 )
               ],

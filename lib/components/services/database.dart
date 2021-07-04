@@ -536,11 +536,29 @@ class DataBaseService {
       },
     );
   }
+  //-----------------------------IA----------------------------------------
+
+  final CollectionReference formCollection =
+      FirebaseFirestore.instance.collection("InforComplementaire");
+
+  Future<void> saveInfCompl(
+    String cp,
+    String thal,
+    String numTarget,
+  ) async {
+    return await heartAttackCollection.doc(uid).set(
+      {
+        'cp': cp,
+        'thal': thal,
+        'numTarget': numTarget,
+      },
+    );
+  }
 
   //-----------------------------IA----------------------------------------
 
   final CollectionReference iaCollection =
-      FirebaseFirestore.instance.collection("IAData");
+      FirebaseFirestore.instance.collection("SubmitMLData");
 
   AppUserData _dataFromSnapshot(DocumentSnapshot snapshot) {
     var data = snapshot.data();
@@ -584,7 +602,7 @@ class DataBaseService {
       String nbMajorVesselsColored,
       String troubleSanguin,
       String healthDiseases) async {
-    return await userCollection.doc(uid).set(
+    return await iaCollection.doc(uid).set(
       {
         'birth': birth,
         'sexe': sexe,

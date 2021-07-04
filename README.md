@@ -109,7 +109,26 @@ Pour avoir un aperçu plus large de la manière dont sont stockées les données
 
 
 ## IA
-Pour ce qui est du modèle utilisé, on a un réseau de neurones assez basic avec en entrée le nombre de variables dans le jeu de données (14), 2 sous couches cachés de 512 neurones chacune et un neurone sur la couche de sortie.
+Le DataSet utilisé est un dataset multivarié disponible ici (https://archive.ics.uci.edu/ml/datasets/Heart+Disease). Il contient 76 Attributs, mais toutes les expériences publiées se réfèrent à l'utilisation d'un sous-ensemble de 14 d'entre eux :
+
+- âge : l’âge en année
+- sexe : sexe (1 = masculin ; 0 = féminin)
+- cp : type de douleur thoracique (angine typique, atypique, douleur non angineuse, asymptomatique)
+- trestbps : tension artérielle au repos (en mm Hg à l'admission à l'hôpital)
+- chol : cholestérol sérique en mg/dl
+- fbs : (glycémie à jeun > 120 mg/dl) (1 = vrai ; 0 = faux)
+- restecg : résultats électrocardiographiques au repos ( 0 = normal, 1 = anomalie de l’onde ST-T, 2 = montre une hypertrophie gauche probable) 
+- thalach : fréquence cardiaque maximale atteinte
+- exang : angine d'effort (1 = oui ; 0 = non)
+- oldpeak : dépression du segment ST induite par l'exercice par rapport au repos
+- Pente : Pente du segment ST à l'exercice de pointe (0 = montante, 1 = plat, 2 = descente)
+- ca : nombre de vaisseaux principaux (0-3) colorés par la fluoroscopie
+- thal : Trouble sanguin (3 = normal; 6 = défaut corrigé ; 7 = défaut réversible)
+- num : diagnostic de maladie cardiaque ( 0 = rétrécissement de diamètre <50%, 1 = rétrècissement de diamètre >50%)
+
+
+
+Pour ce qui est du modèle utilisé, on a un réseau de neurones assez basic avec en entrée le nombre de variables dans le jeu de données (14), 2 sous couches cachés de 512 neurones chacune et un neurone sur la couche de sortie. 
 
 ```python
 mlp_model = Sequential()

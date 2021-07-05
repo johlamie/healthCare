@@ -11,7 +11,7 @@ Ne pouvant pas avoir accès à certaines données parce que les montres connect�
 L’enregistrement auprès des services de FireBase se fait depuis l’appareil mobile. L’utilisateur pourra se créer un compte, s’authentifier et renseigner les informations utiles et nécessaires. Une fois connecté et les différentes champs renseignées, l’utilisateur n’a plus rien à faire. Un algorithme en arrière-plan se charge de lire les données reçues du simulateur, de les stocker et d’effectuer les différents traitements. Les données reçues sont affichées afin que l’utilisateur puisse les consulter. Lorsque l’on détectera une crise cardiaque, le plus proche voisin est recherché afin de lui envoyer une notification. Lorsque celui-ci recevra la notification, il aura une page sur la carte Google avec sa position, la position de la victime et le chemin à suivre pour s’y rendre. Une fois que la personne a été secouru, on le marque dans l'application afin de supprimer l'alerte.
 Le schéma ci-dessous résume globalement l'architecture mise en place.
 
-![image](https://user-images.githubusercontent.com/48968323/124392118-40123c80-dcf4-11eb-8aad-145b4505b7a1.png)
+<img width="570" alt="Capture " src="https://user-images.githubusercontent.com/48968323/124467094-adc37480-dd97-11eb-918d-c1f588d5a898.png">
 
 
 ### Simulateur de données

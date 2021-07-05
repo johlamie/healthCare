@@ -24,6 +24,27 @@ class _PredictionScreenState extends State<PredictionScreen> {
           style: TextStyle(color: Colors.black),
         ),
       ),
+      body: Padding(
+        padding: const EdgeInsets.only(top: 8.0),
+        child: Card(
+          margin:
+              EdgeInsets.only(top: 12.0, bottom: 6.0, left: 20.0, right: 20.0),
+          child: ListTile(
+            title: Text(
+              'ATTENTION',
+              style: TextStyle(
+                // decoration: TextDecoration.underline,
+                color: Colors.red,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            subtitle: Text(
+                'Prenez Rendez-vous avec votre médécin traitant pour une consultation.'
+                //'Lien : ${data['identite']} / Numero : ${data['phoneNumber']}'
+                ),
+          ),
+        ),
+      ),
     );
   }
 }

@@ -14,7 +14,7 @@ class _DrawerPageState extends State<DrawerPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Darwer",
+          "",
           style: TextStyle(
             color: blackColor,
           ),

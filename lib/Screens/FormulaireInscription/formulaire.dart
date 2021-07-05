@@ -639,7 +639,7 @@ class _FormScreenState extends State<FormScreen> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => HomePage(),
+                          builder: (context) => PredictionScreen(),
                         ),
                       );
                     }

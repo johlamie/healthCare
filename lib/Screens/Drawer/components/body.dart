@@ -126,12 +126,12 @@ class Body extends StatelessWidget {
               );
             },
           ),
-          /*Divider(
+          Divider(
             color: Colors.black54,
             //thickness: 10, // pour l'epaissair du diviseur
           ),
           PageDrawerBoutton(
-            titre: "Résultat de l'analyse (Page en cours)",
+            titre: "Résultat de l'analyse",
             press: () {
               Navigator.push(
                 context,
@@ -142,8 +142,8 @@ class Body extends StatelessWidget {
                 ),
               );
             },
-            color: Colors.red[400],
-          ),*/
+            // color: Colors.red[400],
+          ),
           Divider(
             color: Colors.black54,
             //thickness: 10, // pour l'epaissair du diviseur

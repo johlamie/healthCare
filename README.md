@@ -70,7 +70,11 @@ Le drawer permet aussi d'accéder à la page de soumission de données compléme
 
 <img  width="200" src="https://user-images.githubusercontent.com/48968323/124395368-0c3f1300-dd04-11eb-93d1-cd61a1cfab74.png">
 
-Si une personne à une crise cardiaque, la personne la plus proche reçoit une notification et peut lui venir en aide.
+Si une personne à une crise cardiaque, la personne la plus proche reçoit une notification et peut lui venir en aide. Il faut savoir qu'une crise cardiaque survient quand l’apport en sang riche en oxygène est interrompu dans le muscle cardiaque. Si le cœur ne reçoit pas assez de sang, et par conséquent d’oxygène, pendant plus de 20 minutes, une partie du muscle cardiaque (myocarde) meurt, causant des dommages permanents. Pour simuler des attaques cardiaques, on va considérer que le sang ne circule plus ou très faible, ce qui induit une réduction de la fréquence cardiaque. Lorsque celle-ci sera inférieur à 20, on alertera la personne la plus proche. Lorsque l'utilisateur n'a plus sa montre, il n'est pas possible d'avoir des données, donc on ne met pas à jour le champs stockant la fréquence cardiaque.
+
+<img  width="450" src = "https://user-images.githubusercontent.com/48968323/124462163-b913a180-dd91-11eb-8c74-307affa21b52.JPG">
+
+Carte
 
 <img  width="200" src="https://user-images.githubusercontent.com/48968323/124399486-1705a200-dd1c-11eb-8d6a-5246377f3c20.png">
 

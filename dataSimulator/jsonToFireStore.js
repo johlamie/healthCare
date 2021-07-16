@@ -16,7 +16,7 @@ var db = firebase.firestore();
 var heartRateData = [
   {
     "id": 1,
-    "value": 145
+    "value": 14,
   },
   {
     "id": 2,

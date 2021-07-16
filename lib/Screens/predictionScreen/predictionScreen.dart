@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:healtcare/Screens/Home/homePage.dart';
 import 'package:healtcare/constants.dart';
 
 class PredictionScreen extends StatefulWidget {
@@ -23,6 +24,22 @@ class _PredictionScreenState extends State<PredictionScreen> {
           "Prédiction",
           style: TextStyle(color: Colors.black),
         ),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.home),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return HomePage();
+                  },
+                ),
+              );
+            },
+            color: blackColor,
+          )
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.only(top: 8.0),

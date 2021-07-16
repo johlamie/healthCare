@@ -572,8 +572,7 @@ class _FormScreenState extends State<FormScreen> {
                 SizedBox(height: 10),*/
                 Row(
                   children: [
-                    Text("Type Douleur Thorax: "),
-                    SizedBox(width: 1),
+                    Text("Type de Douleur : "),
                     _buildDouleurThoraxique(),
                   ],
                 ),

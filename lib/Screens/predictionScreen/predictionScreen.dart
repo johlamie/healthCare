@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:healtcare/Screens/Home/homePage.dart';
+import 'package:healtcare/Screens/predictionScreen/inference.dart';
 import 'package:healtcare/constants.dart';
 
 class PredictionScreen extends StatefulWidget {
@@ -8,6 +9,8 @@ class PredictionScreen extends StatefulWidget {
 }
 
 class _PredictionScreenState extends State<PredictionScreen> {
+  var inference = PredictOnData();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,6 +31,7 @@ class _PredictionScreenState extends State<PredictionScreen> {
           IconButton(
             icon: Icon(Icons.home),
             onPressed: () {
+              print(inference.riskPrediction);
               Navigator.push(
                 context,
                 MaterialPageRoute(

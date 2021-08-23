@@ -8,7 +8,6 @@ import 'package:healtcare/Screens/Drawer/drawer.dart';
 import 'package:healtcare/Screens/displayHealthData/display_health_data.dart';
 import 'package:healtcare/Screens/mapPoint/maps.dart';
 import 'package:healtcare/components/services/database.dart';
-import 'package:healtcare/components/usersData.dart';
 import 'package:healtcare/constants.dart';
 import 'package:geolocator/geolocator.dart';
 import 'dart:math';

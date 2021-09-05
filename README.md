@@ -2,6 +2,8 @@
 
 HealthCare est une application destinée au grand public. Elle a pour but de permettre la prédiction d’attaques cardio-vasculaires, la surveillance des signes vitaux, d’alerter l’entourage en cas d’attaque cardiaque ou irrégularité cardiaque et aussi de signaler à l'utilisateur une possible maladie cardiaque.
 
+Vidéo de démonstration disponible ici : https://youtu.be/Ypvurwf4yu4
+
 ## Introduction
 
 HealthCare a été développée à l'aide de flutter et de dart. Il est possible de l'utiliser pour le moment que sur les smartphones sous IOS.

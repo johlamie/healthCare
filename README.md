@@ -5,24 +5,24 @@ HealthCare est une application destinée au grand public. Elle a pour but de per
 ## Introduction
 
 HealthCare a été développée à l'aide de flutter et de dart. Il est possible de l'utiliser pour le moment que sur les smartphones sous IOS.
-Pour pouvoir excuter ce projet, vous aurez besoin d'avoir les versions les plus récentes de flutter et dart, Xcode, un simulateur d'appareils iOS et un compte google platefome (pour créer et récupérer une clé d'API si celle fournis n'est plus fonctionnelle).
+Pour pouvoir exécuter ce projet (l'application mobile sur un simulateur ios), vous aurez besoin d'avoir les versions les plus récentes de flutter et dart, Xcode, un simulateur d'appareils iOS et un compte google platefome (pour créer et récupérer une clé d'API si celle fournis n'est plus fonctionnelle).
 
-Ne pouvant pas avoir accès à certaines données parce que les montres connectées disponibles sur le marché ne permettent pas pour le moment d’avoir ces données, un simulateur a été mis en place pour simuler l’envoie des données. Ces données sont sauvegardées dans FireStore sur FireBase pour être ensuite utilisées.
-L’enregistrement auprès des services de FireBase se fait depuis l’appareil mobile. L’utilisateur pourra se créer un compte, s’authentifier et renseigner les informations utiles et nécessaires. Une fois connecté et les différentes champs renseignées, l’utilisateur n’a plus rien à faire. Un algorithme en arrière-plan se charge de lire les données reçues du simulateur, de les stocker et d’effectuer les différents traitements. Les données reçues sont affichées afin que l’utilisateur puisse les consulter. Lorsque l’on détectera une crise cardiaque, le plus proche voisin est recherché afin de lui envoyer une notification. Lorsque celui-ci recevra la notification, il aura une page sur la carte Google avec sa position, la position de la victime et le chemin à suivre pour s’y rendre. Une fois que la personne a été secouru, on le marque dans l'application afin de supprimer l'alerte.
+Ne pouvant pas avoir accès à certaines données parce que les montres connectées disponibles sur le marché ne permettent pas pour le moment d’avoir accès à certaines données, un simulateur a été mis en place pour simuler l’envoi des données. Ces données sont sauvegardées dans FireStore sur FireBase pour être ensuite utilisées.
+L’enregistrement auprès des services de FireBase se fait depuis l’appareil mobile. L’utilisateur pourra se créer un compte, s’authentifier et renseigner les informations utiles et nécessaires. Une fois connecté et les différentes champs renseignées, l’utilisateur n’a plus rien à faire. Une routine en arrière-plan se charge de lire les données reçues du simulateur, de les stocker et d’éffectuer les différents traitements. Les données reçues sont affichées afin que l’utilisateur puisse les consulter. Lorsque l’on détectera une crise cardiaque, le plus proche voisin est recherché afin de lui envoyer une notification. Lorsque celui-ci recevra la notification, un écran contenant une carte Google s'affichera avec sa position, la position de la victime et le chemin à suivre pour s’y rendre. Une fois que la personne a été secouru, il faut le signaler dans l'application afin de supprimer l'alerte.
 Le schéma ci-dessous résume globalement l'architecture mise en place.
 
 <img width="570" alt="Capture " src="https://user-images.githubusercontent.com/48968323/124467094-adc37480-dd97-11eb-918d-c1f588d5a898.png">
 
 
 ### Simulateur de données
-Le répertoires dataSimulator contient le simulateur de données. A l'intérieur se trouve un fichier JavaScript nommé jsonToFireStore.js. Ce fichier va permettre de générer des données (fréquences cardiaques, pression artérielle, Te-aux de cholestérol, glycémie, résultats électrocardiographiques au repos, dépression du segment St, pente du segment ST, nombre de vaisseaux principaux (0-3) colorés par la fluoroscopie). Un planificateur de tâches permet d'envoyer différentes données sur un intervalle de temps que l'ont definit (definir l'intervalle sur [Crontab](https://crontab.guru/)) .  Ces données sont stockés dans FireBase pour ensuite permettre de les lire et de les envoyées à l'IA.
+Le répertoire "dataSimulator" contient le simulateur de données. A l'intérieur se trouve un fichier JavaScript nommé "jsonToFireStore.js". Ce fichier permet de générer des données (fréquences cardiaques, pression artérielle, Te-aux de cholestérol, glycémie, résultats électrocardiographiques au repos, dépression du segment St, pente du segment ST, nombre de vaisseaux principaux (0-3) colorés par la fluoroscopie). Un planificateur de tâches permet d'envoyer ces différentes données sur un intervalle de temps que l'ont definit (definir l'intervalle sur [Crontab](https://crontab.guru/)) .  Ces données sont stockés dans FireBase pour ensuite permettre de les lire et de les envoyées à l'IA.
 
 #### Lancer le simulateur
-Pour lancer le simulateur, il faut se placer dans le répertoire 'dataSimulator' et exécuté la ligne de commande suivante : 
+Pour lancer le simulateur, il faut se placer dans le répertoire "dataSimulator" et exécuté la ligne de commande suivante : 
 ```
 node jsonToFireStore.js
 ```
-Une fois lancer, à chaque écriture il y a un retour dans le terminal pour indiquer que les données  a été correctement envoyé.
+Une fois lancer, à chaque écriture il y a un retour dans le terminal pour indiquer que les données ont été correctement envoyées.
 AVANT ENVOIE : 
 
 <img width="570" alt="Capture " src="https://user-images.githubusercontent.com/48968323/124392107-31c42080-dcf4-11eb-99db-8b75bde313a4.png">
@@ -35,7 +35,7 @@ APRES ENVOIE :
 ### Application HealthCare
 
 Les répertoires principaux et fichiers utilisés pour la conception de l'application sont : 
-- ios\ : contient les configurations et demandes d'autorisation nécéssaire pour l'iphone
+- ios\ : contient les configurations et demandes d'autorisation nécessaire pour l'iphone
   - *.gpx : Fichiers contenant des coordonnées géographiques pour changer la localisation de l'iphone
 - lib\ : contient le code de constructions de l'application (services et pages)
   - components\ : contient des classes et widgets créés (bouton, liste d'affichage...)
@@ -50,11 +50,11 @@ il faut se placer à la racine du projet et exécuter la ligne de commande suiva
 ```
 flutter run
 ```
-Une fois l'application lancée, il fait accepter la demande d'autorisation d'envoi de notification pour être alerté lorsqu'une personne est victime d'une attaque cardiaque à proximité.
+Une fois l'application compilée et lancée il faut accepter la demande d'autorisation d'envoi de notification pour être alerté lorsqu'une personne est victime d'une attaque cardiaque à proximité.
 
 <img  width="200" src="https://user-images.githubusercontent.com/48968323/124393187-89b15600-dcf9-11eb-896c-ab9720f102e4.png">
 
-On est ensuite redirigé sur la page d'accueil où il faut s'inscrire puis se connecter pour avoir accès à la Home page.
+On est ensuite redirigé sur la page d'accueil où il faut s'inscrire puis se connecter pour avoir accès à la page d'acceuil.
 
 <img  height="400" src="https://user-images.githubusercontent.com/48968323/124393904-13aeee00-dcfd-11eb-9b09-45a1d405c991.png">
 
@@ -62,7 +62,7 @@ Une seconde autorisation (pour la localisation) est nécessaire pour avoir accè
 
 <img  width="400" src="https://user-images.githubusercontent.com/48968323/124396002-79a07300-dd07-11eb-93d1-5fba5a15cfd8.png">
 
-Il faut ensuite accéder au drawer, et cliquer sur l'image du compte (par défaut c'est le logo) puis éditer ses informations de compte pour sauvegarder sa civilité, nom, prénom et date de naissance. Depuis cette page on pet également se déconnecter.
+Il faut ensuite accéder au drawer, et cliquer sur l'image du compte (par défaut c'est le logo) puis éditer ses informations de compte (civilité, nom, prénom et date de naissance). Depuis cette page on pet également se déconnecter.
 
 <img  height="400" src="https://user-images.githubusercontent.com/48968323/124395346-f0d40800-dd03-11eb-9b73-34ab19d94f35.png">
 
@@ -70,11 +70,11 @@ Le drawer permet aussi d'accéder à la page de soumission de données compléme
 
 <img  width="200" src="https://user-images.githubusercontent.com/48968323/124395368-0c3f1300-dd04-11eb-93d1-cd61a1cfab74.png">
 
-Après l'exécution du modèle, il y a une rédirection sur une page de prédiction afin de conseiller à l'utilisateur de voir un médecin ou lui notifier qu'il y'a eu aucune anomalie détectée.
+Après l'exécution du modèle, il y a une redirection sur une page de prédiction afin de conseiller à l'utilisateur de voir un médecin ou lui notifier qu'il y'a eu aucune anomalie détectée.
 
 <img  width="200" src="https://user-images.githubusercontent.com/48968323/124480200-4f9e8d80-dda7-11eb-9adc-6dc6db0cfc6e.png">
 
-Si une personne à une crise cardiaque, la personne la plus proche reçoit une notification et peut lui venir en aide. Il faut savoir qu'une crise cardiaque survient quand l’apport en sang riche en oxygène est interrompu dans le muscle cardiaque. Si le cœur ne reçoit pas assez de sang, et par conséquent d’oxygène, pendant plus de 20 minutes, une partie du muscle cardiaque (myocarde) meurt, causant des dommages permanents. Pour simuler des attaques cardiaques, on va considérer que le sang ne circule plus ou très faible, ce qui induit une réduction de la fréquence cardiaque. Lorsque celle-ci sera inférieur à 20, on alertera la personne la plus proche. Lorsque l'utilisateur n'a plus sa montre, il n'est pas possible d'avoir des données, donc on ne met pas à jour le champs stockant la fréquence cardiaque.
+Si une personne a une crise cardiaque, la personne la plus proche reçoit une notification et peut lui venir en aide. Il faut savoir qu'une crise cardiaque survient quand l’apport en sang riche en oxygène est interrompu dans le muscle cardiaque. Si le cœur ne reçoit pas assez de sang, et par conséquent d’oxygène, pendant plus de 20 minutes, une partie du muscle cardiaque (le myocarde) meurt, causant des dommages permanents. Pour simuler des attaques cardiaques, on va considérer que le sang ne circule plus ou très faiblement ce qui induit une réduction de la fréquence cardiaque. Lorsque celle-ci sera inférieur à 20, on alertera la personne la plus proche. Lorsque l'utilisateur n'a plus sa montre, il n'est pas possible d'avoir des données, donc on ne met pas à jour le champs stockant la fréquence cardiaque.
 
 <img  width="450" src = "https://user-images.githubusercontent.com/48968323/124462163-b913a180-dd91-11eb-8c74-307affa21b52.JPG">
 
@@ -84,10 +84,10 @@ Carte
 
 
 ### Stockage des données
-Les données sont stockées sur FireStore. Firestore est une base de données NoSQL orientée document. Contrairement à une base de données SQL, il n'y a pas de tables ou de lignes. Au lieu de cela, les données sont stockées dans des documents, qui sont organisés en collections. Tous les documents doivent être conservés dans des collections. Chaque document contient un ensemble de paires clé-valeur et peuvent aussi contenir des sous-collections et des objets imbriqués. [Mieux Comprendre le système de stockage dans Firestore ici](https://firebase.google.com/docs/firestore/data-model).
+Les données sont stockées sur Firestore. Firestore est une base de données NoSQL orientée document. Contrairement à une base de données SQL, il n'y a pas de tables ou de lignes. Au lieu de cela, les données sont stockées dans des documents, qui sont organisés en collections. Tous les documents doivent être conservés dans des collections. Chaque document contient un ensemble de paires clé-valeur et peuvent aussi contenir des sous-collections et des objets imbriqués. [Mieux Comprendre le système de stockage dans Firestore ici](https://firebase.google.com/docs/firestore/data-model).
 
 #### Base de données
-il faut savoir qu'à chaque création de compte, un identifiant unique appelé 'uid' pour le compte. Cet uid sera utilisé comme une sorte de clé étrangère pour lier les informations stockées à l'utilisateur courant. Neuf (09) collections utilisées pour ce projet :
+Il faut savoir qu'à chaque création de compte, un identifiant unique appelé "uid" est attribué au compte. Cet uid sera utilisé comme une sorte de clé étrangère pour lier les informations stockées à l'utilisateur courant. Neuf (09) collections sont utilisées pour ce projet :
 
 - User : stocke les informations de base des utilisateurs
 - UserLocalisation : stocke la localisation des utilisateurs
@@ -133,7 +133,7 @@ Pipeline d’implémentation de l’IA :
 
 ![image](https://user-images.githubusercontent.com/48968323/124401968-35c06480-dd2d-11eb-800a-6cf0c851b177.png)
 
-Le DataSet utilisé est un dataset multivarié disponible ici (https://archive.ics.uci.edu/ml/datasets/Heart+Disease). Il contient 76 attributs, mais toutes les expériences publiées se réfèrent à l'utilisation d'un sous-ensemble de 14 d'entre eux :
+Le Dataset utilisé est un dataset multivarié disponible ici (https://archive.ics.uci.edu/ml/datasets/Heart+Disease). Il contient 76 attributs, mais toutes les expériences (modèles testés) se réfèrent à l'utilisation d'un sous-ensemble de 14 d'entre eux :
 
 - âge : l’âge en année
 - sexe : sexe (1 = masculin ; 0 = féminin)
